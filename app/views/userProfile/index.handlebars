@@ -1,0 +1,253 @@
+
+<body class="bgbodyUserprofile">
+<div class="container user-profile trans" >
+ <div class="col-sm-4">
+   {{#each errs}}
+  <div class="alert alert-danger">{{updater}}</div>
+   {{else}}
+
+  {{/each}}
+  <img src="../images/profile.png" class="img-thumbnail" alt="Cinque Terre" height="250" width=100%>
+   <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style = "width:100%">
+     <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">BASIC DETAILS</a>
+     {{#if flag }}
+     <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">CHARACTERISTICS</a>
+     {{/if}}
+     <a class="nav-link" id="v-pills-update-tab" data-toggle="pill" href="#v-pills-update" role="tab" aria-controls="v-pills-update" aria-selected="true">UPDATE</a>
+     <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">SETTINGS</a>
+   </div>
+ </div>
+
+
+<div class="col-sm-8">
+  <div class="tab-content" id="v-pills-tabContent" >
+  
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+      <div>
+        {{#if flagpass}}
+         <p>Password updated successfully for your profile</p>
+        
+         {{/if}}
+    {{#if flagger}}
+      <p class='message'>Characteristics updated successfully.</p>
+    
+     {{/if}}
+        <div class="form-group row">
+         <label class="col-sm-4 col-form-label">First Name</label>
+         <div class="col-sm-8">
+           
+           <p class="form-control-static">{{usersession.first_name}}</p>
+         </div>
+       </div>
+
+        <div class="form-group row">
+         <label class="col-sm-4 col-form-label">Last Name</label>
+         <div class="col-sm-8">
+           <p class="form-control-static">{{usersession.last_name}}</p>
+         </div>
+        </div>
+
+        <div class="form-group row">
+         <label class="col-sm-4 col-form-label">Gender</label>
+         <div class="col-sm-8">
+           <p class="form-control-static">{{usersession.gender}}</p>
+         </div>
+       </div>
+
+        <div class="form-group row">
+         <label class="col-sm-4 col-form-label">Email</label>
+         <div class="col-sm-8">
+           <p class="form-control-static" name="emailsession">{{usersession.email}}@ncsu.edu</p>
+         </div>
+        </div>
+
+
+        <div class="form-group row">
+         <label class="col-sm-4 col-form-label">Phone Number</label>
+         <div class="col-sm-8">
+           <p class="form-control-static">+1-{{usersession.phone_no}}</p>
+         </div>
+        </div>
+  </div>
+   <br>
+</div>
+
+
+{{#if flag }}
+<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+   <div>     
+
+     <p>Dietary Habits :<b> {{usersession.dietary_habit}}</b></p>
+     <p>Smoking Habits :<b> {{usersession.smoking_habit}}</b></p> 
+     <p>Minimum Budget :<b> {{usersession.min_budget}}</b></p>
+     <p>Maximum Budget :<b> {{usersession.max_budget}}</b></p>
+     <p>Locality :<b> {{usersession.location}}</b></p>
+     <p>Alcoholic Habit :<b> {{usersession.alcoholic_habit}}</b></p>
+     <p>Room Sharing :<b> {{usersession.room_sharing}}</b></p>
+     <p>Earliest Move in date :<b> {{usersession.earliest_move_in_date}}</b></p>
+     <p>Latest Move in date :<b> {{usersession.latest_move_in_date}}</b></p>
+   </div>
+</div>
+{{/if}}
+
+<div class="tab-pane fade tagging-section pre-scrollable " id="v-pills-update" role="tabpanel" aria-labelledby="v-pills-update-tab">
+  <div>
+    <form action="/updatedetails" id="pref" method="post" class="tagging">
+    <div class="col-lg-8">
+     <label for="exampleFormControlInput1">Locality</label>
+     <div class="input-group">
+        <div style="overflow:hidden;">
+              <select multiple required class="form-control" name="location" title="Select the location"> 
+					    <option>Avery Close</option>
+					    <option>Colonial Arms</option>
+					    <option>Champions Court</option>
+							<option>The College Inn</option>
+					    <option>Centennial Ridge</option>
+					    <option>Gorman Crossing</option>
+			        <option>Gorman Place</option>
+							<option>Kings Court</option>
+		          <option>Kensington Park</option>
+			        <option>Mission Valley Garden</option>
+							<option>Pine Knoll</option>
+			        <option>Parkwood Village</option>
+			        <option>University Commons</option>
+			        <option>Western Manor</option>
+			        <option>Wolf Ridge</option>
+              </select>
+        </div>
+     </div>
+    </div> 
+
+<div class="col-lg-8">
+  <label for="exampleFormControlInput1">MinBudget</label>
+  <div class="input-group">
+   <input class="form-control" id="minbudget" name="min_budget" type="number" value={{usersession.min_budget}} />
+   </div> 
+ </div> 
+
+<div class="col-lg-8">
+  <label for="exampleFormControlInput1">MaxBudget</label>
+  <div class="input-group">
+   <input class="form-control" id="maxbudget" name="max_budget" type="number" value={{usersession.max_budget}} />
+   </div> 
+ </div> 
+
+<div class="col-lg-8">
+  <label for="exampleFormControlInput1">Dietary Habits</label>
+
+  <div class="diet">
+    <div class="tag"><span>#</span> Vegeterian</div>
+    <div class="tag"><span>#</span> Non-Vegeterian</div>
+    <input class="dietary_habit" type="hidden" name="dietary_habit" value="{{usersession.dietary_habit}}">
+  </div>
+</div> 
+
+<div class="col-lg-8">
+  <label for="exampleFormControlInput1">Smoking Habits</label>
+
+  <div class="smoking">
+    <div class="tag"><span>#</span> Smoker</div>
+    <div class="tag"><span>#</span> Non-Smoker</div>
+    <input class="smoking-habit" type="hidden" name="smoking_habit" value="{{usersession.smoking_habit}}">
+  </div>
+</div> 
+
+<div class="col-lg-8">
+  <label for="exampleFormControlInput1">Alcoholic Habits</label>
+
+  <div class="alcohol">
+    <div class="tag"><span>#</span> Alcoholic</div>
+    <div class="tag"><span>#</span> Non-Alcoholic</div>
+    <input class="alcoholic-habit" type="hidden" name="alcoholic_habit" value="{{usersession.alcoholic_habit}}">
+  </div>  
+</div>
+
+
+<div class="col-lg-8">
+  <label for="exampleFormControlInput1">Room Sharing</label>
+
+  <div class="sharing">
+    <div class="tag"><span>#</span> Yes</div>
+    <div class="tag"><span>#</span> No</div>
+    <input class="room-sharing" type="hidden" name="room_sharing" value="{{usersession.room_sharing}}">
+  </div>
+ </div> 
+
+ <div class="col-lg-8">
+  <label for="exampleFormControlInput1">Early Movein Date</label>
+  <div class="input-group">
+    <input id="datepicker1" size="30" class="datepicker form-control" required name="earlydate" readonly="readonly" data-date-format="mm/dd/yyyy" value={{usersession.earliest_move_in_date}} /> 
+   </div> 
+ </div> 
+
+ <div class="col-lg-8">
+  <label for="exampleFormControlInput1">Latest Movein Date</label>
+  <div class="input-group">
+   <input id="datepicker2" size="30" class="datepicker form-control" required name="latedate" readonly="readonly" data-date-format="mm/dd/yyyy" value={{usersession.latest_move_in_date}} />
+   </div> 
+ </div> 
+
+ <div class="col-lg-8">
+  <label for="exampleFormControlInput1"></label><br>
+  <button type="submit" class="btn btn-primary center-block">Update</button>
+ </div> 
+</form>
+</div> 
+    
+</div>
+
+{{#each errs}}
+  <div class="alert alert-danger">{{updater}}</div>
+{{else}}
+
+{{/each}}
+
+
+<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+ 
+  <div>
+  <form action='/index' method='post'>
+  <div class="col-lg-8">
+  <label for="exampleFormControlInput1">Current Password</label>
+  <div class="input-group">
+   <div class="input-group-addon">
+   </div>
+   <input class="form-control" name="oldpassword" type="password" required/>
+   </div> 
+  </div>
+
+  <div class="col-lg-8">
+  <label for="exampleFormControlInput1">New Password</label>
+  <div class="input-group">
+   <div class="input-group-addon">
+   </div>
+   <input class="form-control" name="newpassword" type="password" required/>
+   </div> 
+  </div>
+  
+  <div class="col-lg-8">
+  <label for="exampleFormControlInput1">Confirm Password</label>
+  <div class="input-group">
+   <div class="input-group-addon">
+   </div>
+   <input class="form-control" name="confirmnewpassword" type="password" required/>
+   </div> 
+  </div>
+  
+  <div class="col-lg-8">
+  <label for="exampleFormControlInput1"></label>
+  <button type="submit" class="btn btn-primary center-block">Change</button>
+  </form>
+  </div> 
+
+  </div>
+
+</div>
+
+
+</div>
+
+</div>
+</body>
+​
+

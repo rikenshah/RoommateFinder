@@ -1,0 +1,59 @@
+{{#each errors}}
+  <div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+<div class="card card-body">
+  <h3>Signup</h3>
+  <form action="/users" method="post">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="text" class="form-control" name="password">
+    </div>
+    <div class="form-group">
+      <label for="confirmpassword">Confirm Password!!!!!</label>
+      <input type="text" class="form-control" name="confirmpassword">
+    </div>
+        <div class="form-group">
+      <label for="dietaryhabit">Dietary Habit</label>
+      <input type="text" class="form-control" name="dietaryhabit">
+    </div>
+   <!--     <div class="form-group">
+      <label for="smokinghabit">Smoking Habit</label>
+      <input type="text" class="form-control" name="smokinghabit">
+    </div>
+        <div class="form-group">
+      <label for="alcoholichabit">Alcoholic Habit</label>
+      <input type="text" class="form-control" name="alcoholichabit">
+    </div>
+        <div class="form-group">
+      <label for="min_budget">Min_Budget</label>
+      <input type="number" class="form-control" name="min_budget">
+    </div>
+        <div class="form-group">
+      <label for="max_budget">Max_Budget</label>
+      <input type="number" class="form-control" name="max_budget">
+    </div>
+        <div class="form-group">
+      <label for="room_sharing">Room_Sharing</label>
+      <input type="text" class="form-control" name="room_sharing">
+    </div>
+        <div class="form-group">
+      <label for="earliest_move_in_date">Earliest move in date</label>
+      <input type="text" class="form-control" name="earliest_move_in_date">
+    </div>
+            <div class="form-group">
+      <label for="latest_move_in_date">Latest move in date</label>
+      <input type="text" class="form-control" name="latest_move_in_date">
+    </div>-->
+    <button type="submit" class="btn btn-primary">Signup</button>
+  </form>
+</div>

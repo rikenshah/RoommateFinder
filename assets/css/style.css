@@ -1,0 +1,319 @@
+.tagging-section .tagging .tag {
+    background: none repeat scroll 0 0 #53c9f7;
+    border-radius: 2px;
+    color: #0a0a0a;
+    cursor: default;
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    padding-top: 20px;
+    padding: 7px 20px 7px 0;
+    margin: 5px 5px 0 0;
+    font-size: 0.8em;
+}
+
+.tagging-section .tagging .tag.active {
+    background-color: #bb5d08;
+    color:  white;
+}
+.tagging-section .tagging .tag span {
+	background: none repeat scroll 0 0 #3490b3;
+    border-radius: 5px;
+    margin-right: 2px;
+    padding: 4px 10px 3px;
+    margin-left: 5px;
+}
+.tagging-section .tagging .tag.active span {
+    background-color: #864308;
+}
+.tagging-section .tagging > div {
+    padding-bottom: 10px;
+}
+.tagging-section .tagging .tag .tag-i {
+    color: white;
+    cursor: pointer;
+    font-size: 1.3em;
+    height: 0;
+    line-height: 0.1em;
+    position: absolute;
+    right: 5px;
+    top: 1rem;
+    text-align: center;
+    width: 10px;
+}
+#pref {
+	border: 1px solid #d4cccc;
+    padding: 20px;
+    border-radius: 5px;
+    float: left;
+}
+
+.card-deck .card-title {
+    margin: .76rem;
+    text-align: center;
+}
+.tagging-section .card-deck .card{
+    float: left;
+    display: block;
+    width: 28%;
+    flex: none;
+    margin-bottom: 20px;
+}
+.tagging-section .card .card-footer {
+    padding: .5rem 1rem;
+}
+
+.left-div {
+    float: left;
+    width: 200px;
+    /*height: 20px;*/
+    margin-right: 75px;
+    background-color: rgb(231, 230, 250);
+}
+.right-div {
+
+    margin-left: 50px;
+    background-color: rgb(255, 0, 43);
+}
+
+.login-tab {
+    padding: 1cm;
+}
+
+.tab-header {
+    margin-bottom:1rem;
+}
+
+.email-domain {
+    padding: 0px;
+}
+
+.ncsu-domain {
+    padding-top: 9px;
+    font-size: 14px;
+}
+
+.sbmt-btn:hover {
+    background-color: royalblue;
+}
+
+.required-mark {
+    color: red;
+    font-weight: bold;
+}
+
+.required-message {
+    font-style: oblique;
+    font-weight: normal;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.error-message{
+    font-style: oblique;
+    font-weight: bold;
+    font-size: 13px;
+    color: red;
+}
+
+.input-email {
+    padding-right: 5px;
+}
+
+#loginContainer {
+    height: 100%;
+    padding-bottom: 75px;
+    padding-left: 60px;
+    padding-right: 50px;
+    margin-top: 50px;
+}
+
+html {
+    height: 100%;
+}
+
+.container {
+    display:block;
+    overflow:auto;
+}
+
+#accordion {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.register-form {
+    padding: 2%;
+}
+
+.register-row {
+    padding: 5px;
+}
+
+.register-label {
+    padding-top: 5px;
+}
+
+.gender {
+    margin-right: 20px;
+}
+
+div.user-profile {
+    padding-bottom:20px;
+    padding-top: 20px;
+    margin: 0 auto; 
+}   
+
+.message{
+    color: red;
+}
+
+.user-message{
+    font-weight: bold;
+    font-size: 13px;
+    color: royalblue;
+}
+
+.user-message-top{
+    padding-bottom: 15px;
+}
+
+.user-message-bottom{
+    padding-top: 15px;
+}
+
+.fill{ 
+    height: 100%;
+    width: 100%;
+}
+
+div.search-section {
+    padding-bottom: 20px;
+    margin: 0 auto; 
+}
+
+.last-field{
+    margin-bottom: 15px;
+}
+
+#amount{
+    border:0;
+    color:#337ab7;
+    font-weight:bold;
+}
+
+.register-tag{
+    padding-top: 12px;
+}
+
+.bgbody{
+    /* The image used */
+    padding-top: 40px;
+    background-image: url("../images/bg.jpg");
+    /* Full height */
+    height: 200%; 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.bgbodyUserprofile{
+    /* The image used */
+    padding-top: 140px;
+    background-image: url("../images/bgIndex.jpeg");
+    /* Full height */
+    height: 100%; 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+}
+.trans{
+
+    background-color: #ffffff;
+    opacity: 0.9;
+    filter: alpha(opacity=60);
+}
+html {
+    height: 100%;
+}
+.search-history{
+    width: 100%;
+    border: 1px solid black;
+}
+
+.nav-opac{
+    opacity: 0.7;
+}
+
+.cor-img{
+    width:100%;
+    height:800px;
+}
+
+.cor-capt{
+    font-family: cursive;
+    font-size: 24px;
+    font-weight: bold;
+    color:whitesmoke;
+}
+
+
+body{
+    background: #EFF7FE;
+  padding-top: 15px;
+}
+.main-section{
+border:1px solid royalblue;
+background-color: #fff;
+}
+.profile-header{
+background-color: royalblue;
+height:150px;
+}
+.user-detail{
+margin:-50px 0px 30px 0px;
+}
+.user-detail img{
+height:100px;
+width:100px;
+}
+.user-detail h5{
+margin:15px 0px 5px 0px;
+}
+.user-social-detail{
+padding:15px 0px;
+background-color:royalblue;
+}
+.user-social-detail a i{
+color:#fff;
+font-size:23px;
+padding: 0px 5px;
+}
+.profile-container{
+    padding-top: 40px;
+}
+.cor-capt-profile{
+    font-family: cursive;
+    font-size: 24px;
+    font-weight: bold;
+    color:black;
+}
+
+.search-history{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.profile{
+    padding: 5px;
+    color: white;
+    background: #53c9f7;
+}
+
+.connect{
+    background-color: #3490b3;
+}

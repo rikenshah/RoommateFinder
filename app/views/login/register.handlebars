@@ -1,0 +1,245 @@
+<body class="bgbodyUserprofile">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 trans">
+            {{#each errors}}
+              <div class="alert alert-danger">{{text}}</div>
+            {{else}}
+
+            {{/each}}
+            <div id="accordion" role="tablist" aria-multiselectable="true">
+                <form id="parentForm" action="/register" onsubmit="return validatePrefs()" method="post">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingOne">
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Create Profile
+                            </a>
+                        </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="card-block">
+                                <div class="register-form">
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-4">
+                                            <label for="firstName">First Name</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="firstNameErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" id="firstName" class="form-control" name="firstName" placeholder="Enter first name">
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-4">
+                                            <label for="lastName">Last Name</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="lastNameErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Enter last name">
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-4">
+                                            <label for="gender">Gender</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="genderErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="form-check register-label col-sm-3">
+                                            <label class="btn btn-default checked">
+                                            <input type="radio" name="genderRadio" id="gender_male" value="Male"/> Male
+                                            </label>
+                                        </div>
+                                        <div class="form-check register-label col-sm-3">
+                                            <label class="btn btn-default checked">
+                                            <input type="radio" name="genderRadio" id="gender_female" value="Female"/> Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-4">
+                                            <label for="email">Email Address</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" readonly class="form-control" name="email" value= "{{emailer}}@ncsu.edu">
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row last-field">
+                                        <div class="register-label col-sm-4">
+                                            <label for="phoneNumber">Phone Number</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="phoneNumberErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="register-label country-code col-sm-1">
+                                            <span>+1</span>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <input type="text" id="phoneNumber" class="form-control" name="phoneNumber" placeholder="Enter phone number" maxlength="10">
+                                        </div>
+                                    </div>
+                                    <div class="required-message">
+                                        <span class="required-mark">*</span> Indicates required field.
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="text-right col-sm-12">
+                                            <button type="button" id="nextSubmit" class="sbmt-btn btn btn-primary" onclick="navigate(this)">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" role="tab" id="headingTwo">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Set Preferences
+                            </a>
+                        </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="card-block tagging-section">
+                                <div class="register-form tagging">
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-5">
+                                            <label for="amount">Budget</label>
+                                            <span class="required-mark">*</span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div id="slider-range"></div>
+                                            <input type="text" name="amount" id="amount" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-5">
+                                            <label for="locations">Location</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="locationErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select multiple name="locations" class="form-control" id="locations">
+                                                <option>Avery Close</option>
+                                                <option>Colonial Arms</option>
+                                                <option>Champions Court</option>
+                                                <option>The College Inn</option>
+                                                <option>Centennial Ridge</option>
+                                                <option>Gorman Crossing</option>
+                                                <option>Gorman Place</option>
+                                                <option>Kings Court</option>
+                                                <option>Kensington Park</option>
+                                                <option>Mission Valley Garden</option>
+                                                <option>Pine Knoll</option>
+                                                <option>Parkwood Village</option>
+                                                <option>University Commons</option>
+                                                <option>Western Manor</option>
+                                                <option>Wolf Ridge</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-5 register-tag">
+                                            <label for="diet">Dietary Habits</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="dietErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div id="diet" class="diet">
+                                                <div class="tag"><span>#</span> Vegeterian</div>
+                                                <div class="tag"><span>#</span> Non-Vegeterian</div>
+                                                <input class="dietary_habit" type="hidden" name="dietary_habit" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-5 register-tag">
+                                            <label for="smoking">Smoking Habits</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="smokingErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div id="smoking" class="smoking">
+                                                <div class="tag"><span>#</span> Smoker</div>
+                                                <div class="tag"><span>#</span> Non-Smoker</div>
+                                                <input class="smoking-habit" type="hidden" name="smoking_habit" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-5 register-tag">
+                                            <label for="alcohol">Alcoholic Habits</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="alcoholErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div id="alcohol" class="alcohol">
+                                                <div class="tag"><span>#</span> Alcoholic</div>
+                                                <div class="tag"><span>#</span> Non-Alcoholic</div>
+                                                <input class="alcoholic-habit" type="hidden" name="alcoholic_habit" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div  class="register-label col-sm-5 register-tag">
+                                            <label for="sharing">Room Sharing</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="sharingErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div id="sharing" class="sharing">
+                                                <div class="tag"><span>#</span> Yes</div>
+                                                <div class="tag"><span>#</span> No</div>
+                                                <input class="room-sharing" type="hidden" name="room_sharing" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="register-label col-sm-5 register-tag">
+                                            <label for="earlyDate">Earliest Move-In Date</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="earlyDateErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="register-label col-sm-6">
+                                            <input id="datepicker1" size="30" class="datepicker form-control" required name="earlydate" readonly="readonly" data-date-format="mm/dd/yyyy" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="register-row form-row last-field">
+                                        <div class="register-label col-sm-5 register-tag">
+                                            <label for="lateDate">Latest Move-In Date</label>
+                                            <span class="required-mark">*</span>
+                                            <div id="lateDateErrors" class="error-message">
+                                            </div>
+                                        </div>
+                                        <div class="register-label col-sm-6">
+                                            <input id="datepicker2" size="30" class="datepicker form-control" required name="latedate" readonly="readonly" data-date-format="mm/dd/yyyy" value="" />
+                                        </div>
+                                    </div>
+                                    <div class="required-message">
+                                        <span class="required-mark">*</span> Indicates required field.
+                                    </div>
+                                    <div class="register-row form-row">
+                                        <div class="text-left col-sm-6">
+                                            <button type="button" id="prevSubmit" class="sbmt-btn btn btn-primary" onclick="navigate(this)">Previous</button>
+                                        </div>
+                                        <div class="text-right col-sm-6">
+                                            <button type="submit" id="Submit" form="parentForm" class="sbmt-btn btn btn-primary">Register</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>

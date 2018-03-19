@@ -1,0 +1,44 @@
+
+<body class="bgbodyUserprofile">
+  <div class="container profile-container">
+    <div class="row">
+      <div class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center trans">
+          <div class="row">
+              <div class="col-lg-12 col-sm-12 col-12"></div>
+          </div>
+          <div class="row user-detail">
+              <div class="col-lg-12 col-sm-12 col-12">
+                  <img src="../images/user.jpg" class="rounded-circle img-thumbnail">
+                  <form action="/connect" method="post">
+                  <div class="">
+                  <p>User email : {{useris.email}}@ncsu.edu</p>
+                  <p>Firstname : {{useris.first_name}}</p>
+                  <p>Lastname : {{useris.last_name}}<p>
+                  <p>Gender : {{useris.gender}}</p>
+                  <p>Characteristics:</p>
+                  <p>MinBudget : {{useris.min_budget}}</p>
+                  <p>MaxBudget : {{useris.max_budget}}</p>
+                  <p>Dietary Habits : {{useris.dietary_habit}}</p>
+                  <p>Smoking Habits : {{useris.smoking_habit}}</p>
+                  <p>Alcoholic Habits : {{useris.alcoholic_habit}}</p>
+                  <p>Room Sharing : {{useris.room_sharing}}</p>
+                  <p>Early Movein Date : {{useris.earliest_move_in_date}}</p>
+                  <p>Latest Movein Date : {{useris.latest_move_in_date}}</p>
+                  <p>Location preferred : {{useris.location}}</p>
+                  </div>
+                  <hr>
+                  {{!-- <a href="#" class="btn btn-info btn-lg">Connect</a> --}}
+                  {{!-- <input class="btn btn-info btn-lg" type="submit" name="connectprofile" data-toggle="modal"  value="{{useris.email}}" /> --}}
+                  <button class="btn btn-info btn-lg" type="submit" name="connectprofile" data-toggle="modal" value="{{useris.email}}" >CONNECT</button>
+                  </form>
+              </div>
+          </div>
+           {{#if connectmessage}}
+            <div class="user-message user-message-top">
+              Your connection email has been sent successfully with your contact details! If the person is interested then he will contact you!!
+            </div>
+           {{/if}}
+      </div>
+    </div>
+  </div>
+</body>

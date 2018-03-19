@@ -1,0 +1,101 @@
+
+<div id="loginContainer" class="container-fluid">
+  <div class="login-form row align-items-center">
+{{#each errors}}
+  <div class="alert alert-danger">{{text}}</div>
+{{else}}
+
+{{/each}}
+<body class="bgbody">
+<div id="loginContainer" class="container-fluid">
+  <div class="login-form row align-items-center">
+      <div class="login-tab col-md-4 offset-md-4 border border-primary rounded trans">
+        {{#if message}}
+            <div class="user-message user-message-top">
+              Your Account has been verified successfully. Please log in to use our services.
+            </div>
+        {{/if}}
+        <ul class="tab-header nav nav-tabs" id="loginTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="signup-tab" data-toggle="tab" href="#signup" role="tab" aria-controls="signup" aria-selected="false">Sign Up</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+            <form action="/signin" method="post">
+              <div class="form-group">
+                <label for="loginEmail">Email Address</label>
+                <span class="required-mark">*</span>
+                <div class="row">
+                	<div class="input-email col-md-9">
+                  	<input type="text" class="form-control" name="loginEmail" placeholder="Enter ncsu email address" required>
+                  </div>
+                  <div class="col-md-3 email-domain">
+                		<div class="ncsu-domain">@ncsu.edu</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <span class="required-mark">*</span>
+                <input type="password" name="loginPassword" class="form-control" required placeholder="Enter password">
+              </div>
+              <div class="required-message">
+                <span class="required-mark">*</span> Indicates required field.
+              </div>
+              <div class="text-center">
+                <button type="submit" class="sbmt-btn btn btn-primary">Login</button>
+              </div>
+              {{#if emailMessage}}
+                <div class="user-message user-message-bottom">
+                   Account Activation link has been sent to your email address. Please verify your email address by following instructions given in email.
+                </div>
+              {{/if}}
+            </form>
+          </div>
+          <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+            <form action="/" method="post">
+              <div class="form-group">
+                <label for="signupEmail">Email Address</label>
+                <span class="required-mark">*</span>
+                <div class="row">
+                	<div class="input-email col-md-9">
+                  	<input type="text" class="form-control" name="signupEmail" placeholder="Enter ncsu email address" required>
+                  </div>
+                  <div class="col-md-3 email-domain">
+                		<div class="ncsu-domain">@ncsu.edu</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <span class="required-mark">*</span>
+                <img class="info" src="/images/info.svg" alt="info" data-toggle="tooltip" data-placement="top" title="Password must have atleast one uppercase and lowercase letter, one number and one special character."/>
+                <input type="password" id="password" class="form-control" name="password" aria-describedby="passwordHelpInline" placeholder="Enter password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[!@#\$%\^&\*])(?=.*[A-Z]).{8,21}" required>
+                <div>
+                    <small id="passwordHelpInline" class="text-muted">
+                        Must be 8-20 characters long.
+                    </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="comfirmPassword">Confirm Password</label>
+                <span class="required-mark">*</span>
+                <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" oninput="validatePassword(this)" placeholder="Confirm password" required>
+              </div>
+              <div class="required-message">
+                <span class="required-mark">*</span> Indicates required field.
+              </div>
+              <div class="text-center">
+                <button type="submit" class="sbmt-btn btn btn-primary">Sign Up</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+</body>

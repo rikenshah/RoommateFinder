@@ -1,0 +1,142 @@
+<body class="bgbodyUserprofile">
+<div class="container tagging-section search-section trans">
+	<div class="search-history"><b>You previously searched for : {{usersession.last_search}}</b></div>
+	{{#each errors}}
+  <div class="alert alert-danger">{{texterr}}</div>
+  {{else}}
+
+  {{/each}}
+
+	<div class="row">
+		<div class="col-sm-4">
+			<form action="" method="post" id="pref">
+				
+			<h4 class="d-flex justify-content-between align-items-center mb-3">
+	            <span class="text-muted">Search & Refine</span>
+	            <span class="badge badge-secondary badge-pill">tag.count</span>
+			
+	          </h4>
+	          <fieldset class="form-actions tagging mb-3">
+	          	<div class="diet">
+	          		<div class="tag"><span>#</span> Vegeterian</div>
+	          		<div class="tag"><span>#</span> Non-Vegeterian</div>
+	          		<input class="dietary-habit" type="hidden" name="dietary_habit" value="">
+	          	</div>
+				<div class="smoking">
+	          		<div class="tag"><span>#</span> Smoker</div>
+	          		<div class="tag"><span>#</span> Non-Smoker</div>
+	          		<input class="smoking-habit" type="hidden" name="smoking_habit" value="">
+	          	</div>
+				<div id="alcohol" class="alcohol">
+					<div class="tag"><span>#</span> Alcoholic</div>
+					<div class="tag"><span>#</span> Non-Alcoholic</div>
+					<input class="alcoholic-habit" type="hidden" name="alcoholic_habit" value="">
+				</div>
+	          	<div class="gender">
+	          		<div class="tag"><span>#</span> Female</div>
+	          		<div class="tag"><span>#</span> Male</div>
+	          		<input type="hidden" name="gender" value="">
+	          	</div>
+	          	<div class="room">
+	          		<div class="tag"><span>#</span> Yes</div>
+					<div class="tag"><span>#</span> No</div>
+					<input class="room-sharing" type="hidden" name="room_sharing" value="">
+	          	</div>
+	          	<div>
+			        <p>
+					  <label for="amount">Price range : </label>
+					  <input type="text" name="amount" id="amount" readonly>
+					</p>
+					 
+					<div id="slider-range"></div>
+				</div>
+
+				<div>
+					<label for="exampleFormControlInput1">Locality</label>
+ 					<div class="input-group">
+						 <div style="overflow:hidden;">
+                            <select multiple class="form-control" name="location" title="Select the location">
+					        <option>Avery Close</option>
+					        <option>Colonial Arms</option>
+					        <option>Champions Court</option>
+							<option>The College Inn</option>
+					        <option>Centennial Ridge</option>
+					        <option>Gorman Crossing</option>
+					        <option>Gorman Place</option>
+							<option>Kings Court</option>
+					        <option>Kensington Park</option>
+					        <option>Mission Valley Garden</option>
+							<option>Pine Knoll</option>
+					        <option>Parkwood Village</option>
+					        <option>University Commons</option>
+					        <option>Western Manor</option>
+					        <option>Wolf Ridge</option>
+                             </select>
+                         </div>
+				    </div>
+				</div>
+
+				</fieldset>
+				<input type="submit" name="Search" id="search" class="btn-primary btn center-block" value="Search">
+			</form>
+		   </div>
+		<div class="col-md-8">
+			{{#if message}}
+	         	<p class='message'>No results match your search criteria. Please search for other preferences.</p>
+	        {{/if}}
+			<form action="/processprofile" method="post">
+			<div class="card-deck">
+				{{#each results}}
+			<div class="card profile">
+				       
+						<form action="/connect" method="post">
+							<div class="row">
+								<div class="col-md-4">
+									Name
+								</div>
+								<div class="col-md-8">
+									{{first_name}} {{last_name}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									Email
+								</div>
+								<div class="col-md-8">
+									{{email}}@ncsu.edu
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									Gender
+								</div>
+								<div class="col-md-8">
+									{{gender}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									Budget
+								</div>
+								<div class="col-md-8">
+									${{min_budget}} - ${{max_budget}}
+								</div>
+							</div>
+							<br>
+							{{!-- <button class="btn btn-primary center-block connect" type="submit" name="connectprofile" data-toggle="modal" value="{{email}}" >View Profile</button> --}}
+							<input class="btn btn-primary center-block connect" type="submit" name="viewprofile" data-toggle="modal"  value="{{email}}"/>
+      
+				</div>
+			    {{/each}}
+			</div>
+			</form>
+			{{#if connectmessage}}
+            <div class="user-message user-message-top">
+              Your connection email has been sent successfully with your contact details! The person will contact you if interested!!
+            </div>
+           {{/if}}
+		</div>
+		</div>
+	</div>
+</div>
+</body>
