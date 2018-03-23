@@ -1,48 +1,21 @@
 {
-  "name": "roommatefinder",
-  "version": "1.0.0",
-  "description": "Roommate finder app",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rikenshah/RoommateFinder.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rikenshah/RoommateFinder/issues"
-  },
-  "engines": {
-    "node": "8.9.4"
-  },
-  "homepage": "https://github.com/rikenshah/RoommateFinder#readme",
+  "name": "node-authentication",
+  "main": "server.js",
   "dependencies": {
-    "bcrypt": "*",
-    "body-parser": "^1.18.2",
-    "client-sessions": "^0.8.0",
-    "connect-flash": "*",
-    "connect-memcached": "^0.2.0",
-    "cookie-parser": "^1.4.3",
-    "dotenv": "^5.0.1",
-    "email-verification": "0.4.6",
-    "express": "^4.16.2",
-    "express-handlebars": "^3.0.0",
-    "express-messages": "*",
-    "express-session": "^1.15.6",
-    "express-validator": "*",
-    "mongodb": "^3.0.2",
-    "mongoose": "^5.0.6",
-    "mongoose-type-email": "^1.0.5",
-    "mongoose-unique-validator": "^2.0.0",
-    "multer": "*",
-    "nodemailer": "^4.4.2",
-    "passport": "*",
-    "passport-http": "*",
-    "passport-local": "*",
-    "save": "^2.3.2"
+    "express": "~4.14.0",
+    "ejs": "~2.5.2",
+    "mongoose": "~4.13.1",
+    "passport": "~0.3.2",
+    "passport-local": "~1.0.0",
+    "passport-facebook": "~2.1.1",
+    "passport-twitter": "~1.0.4",
+    "passport-google-oauth": "~1.0.0",
+    "connect-flash": "~0.1.1",
+    "bcrypt-nodejs": "latest",
+    "morgan": "~1.7.0",
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "method-override": "~2.3.6",
+    "express-session": "~1.14.1"
   }
 }
