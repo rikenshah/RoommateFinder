@@ -2,6 +2,7 @@
 
 // set up ======================================================================
 // get all the tools we need
+require('dotenv').config();
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
@@ -17,7 +18,7 @@ var session      = require('express-session');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(process.env.MONGO_CONNECTION_STRING); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
