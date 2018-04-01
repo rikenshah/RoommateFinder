@@ -20,8 +20,8 @@ module.exports = {
     // },
 
     'googleAuth' : {
-        'clientID'         : process.env.GOOGLE_CLIENT_ID,
-        'clientSecret'     : process.env.GOOGLE_CLIENT_SECRET,
+        'clientID'         : '411876309202-hvh6me8kdavn7vd80p39qn1sg7gjkdl1.apps.googleusercontent.com',
+        'clientSecret'     : 'a8y5ntG5hveqbksNuO-QJsx3',
         'callbackURL'      : 'http://findmeroommate.herokuapp.com/auth/google/callback'
     }
 
