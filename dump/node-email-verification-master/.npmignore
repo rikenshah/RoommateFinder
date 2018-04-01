@@ -1,0 +1,6 @@
+examples
+*.sublime-*
+*.log
+README.html
+test
+.github
