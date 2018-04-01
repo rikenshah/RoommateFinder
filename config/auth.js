@@ -5,8 +5,8 @@ require('dotenv').config();
 module.exports = {
 
     'facebookAuth' : {
-        'clientID'        : 'your-secret-clientID-here', // your App ID
-        'clientSecret'    : 'your-client-secret-here', // your App Secret
+        'clientID'        : process.env.GOOGLE_CLIENT_ID, // your App ID
+        'clientSecret'    : process.env.GOOGLE_CLIENT_SECRET, // your App Secret
         'callbackURL'     : 'http://localhost:8080/auth/facebook/callback',
         'profileURL': 'https://graph.facebook.com/v2.5/me?fields=first_name,last_name,email',
         'profileFields'   : ['id', 'email', 'name'] // For requesting permissions from Facebook API
@@ -14,8 +14,8 @@ module.exports = {
     },
 
     'twitterAuth' : {
-        'consumerKey'        : 'your-consumer-key-here',
-        'consumerSecret'     : 'your-client-secret-here',
+        'consumerKey'        : process.env.GOOGLE_CLIENT_ID,
+        'consumerSecret'     : process.env.GOOGLE_CLIENT_SECRET,
         'callbackURL'        : 'http://localhost:8080/auth/twitter/callback'
     },
 
