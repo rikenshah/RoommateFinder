@@ -1,0 +1,11 @@
+.idea/
+node_modules
+*.log
+*.sublime-*
+TEST.js
+tempuser.js
+
+# compiled markdown
+README.html
+.DS_Store
+development.js

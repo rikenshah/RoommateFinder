@@ -79,7 +79,11 @@ module.exports = function(app, passport) {
     // google ---------------------------------
 
         // send to google to do the authentication
-        app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+        app.get('/auth/google', passport.authenticate('google', { 
+             // Only show accounts that match the hosted domain.
+            // hd: 'ncsu.edu',
+            scope : ['profile', 'email'] 
+        }));
 
         // the callback after google has authenticated the user
         app.get('/auth/google/callback',
