@@ -19,15 +19,19 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+    // Chatbox
+    app.get('/chat', function(req, res) {
+      res.render('index2.ejs');
+    });
 
 
     // google ---------------------------------
 
         // send to google to do the authentication
-        app.get('/auth/google', passport.authenticate('google', { 
+        app.get('/auth/google', passport.authenticate('google', {
              // Only show accounts that match the hosted domain.
             // hd: 'ncsu.edu',
-            scope : ['profile', 'email'] 
+            scope : ['profile', 'email']
         }));
 
         // the callback after google has authenticated the user
