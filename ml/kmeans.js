@@ -108,6 +108,46 @@ class Clusterize
     	}
     	return v;
   	}
+
+  	initialize() 
+  	{
+    	this.groups = [];
+    	for (let i = 0, max = this.k; i < max; ++i) 
+    	{
+      		this.groups[i] = new Group(this);
+    	}
+    	this.indexes = []; 
+    	for (let i = 0, max = this.v.length; i < max; ++i) {
+      		this.indexes[i] = i;
+    	}
+    	return this;
+  	}
+
+  	clustering() 
+  	{
+    	for (let j = 0, max = this.groups.length; j < max; ++j) 
+    	{
+    	  this.groups[j].initCluster();
+   		}
+    	for (let i = 0, max = this.v.length; i < max; ++i) 
+    	{
+      		let min = this.groups[0].distances[i];
+      		let indexGroup = 0;
+      		for (let j = 1, max2 = this.groups.length; j < max2; ++j) 
+      		{
+        		if (this.groups[j].distances[i] < min) 
+        		{
+          			min = this.groups[j].distances[i];
+          			indexGroup = j;
+        		}
+      		}
+      		this.groups[indexGroup].cluster.push(this.v[i]);
+      		this.groups[indexGroup].clusterInd.push(i);
+    	}
+    	return this;
+  	}
+
+  	
 }
 
 exports.clusterize = (vector, options, callback) => {
