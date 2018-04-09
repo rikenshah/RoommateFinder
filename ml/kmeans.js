@@ -68,6 +68,46 @@ class Clusterize
 	    }
 	    return iterate();			
   	}
+
+  	checkV(v) 
+  	{
+    	let dim = 1;
+    	if (_.isArray(v[0])) 
+    	{
+      		dim = v[0].length;
+    	}
+    	for (let i = 0, max = v.length; i < max; ++i) 
+    	{
+      		if (!_.isArray(v[i])) 
+      		{
+        		if (dim !== 1) 
+        		{
+          			throw new Error('All the elements must have the same dimension');
+        		}
+        		v[i] = Number(v[i]);
+        		if (isNaN(v[i])) 
+        		{
+		        	throw new Error('All the elements must be float type');
+		        }
+      		}
+      		else 
+      		{
+        		if (v[i].length !== dim) 
+        		{
+          			throw new Error('All the elements must have the same dimension');
+        		}
+        		for (let j = 0, max2 = v[i].length; j < max2; ++j) 
+        		{
+          			v[i][j] = Number(v[i][j]);
+          			if (isNaN(v[i][j])) 
+          			{
+            			throw new Error('All the elements must be float type');
+          			}
+        		}
+      		}
+    	}
+    	return v;
+  	}
 }
 
 exports.clusterize = (vector, options, callback) => {
