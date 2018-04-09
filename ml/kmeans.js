@@ -38,7 +38,35 @@ class Clusterize
       	return callback(new Error(errMessage));
     	}
 
-    				
+    	this.initialize(); 
+
+	    const self = this;
+    	let moved = -1;
+
+	    function iterate() 
+	    {
+      		if (moved === 0) 
+      		{
+        		return callback(null, self.output()); 
+      		}
+      		moved = 0;
+	      for (let i = 0, max = self.groups.length; i < max; ++i) 
+	      {
+	        self.groups[i].defineCentroid(self); 
+	        self.groups[i].distanceObjects(self); 
+	      }
+	      self.clustering(); 
+	      for (let i = 0, max = self.groups.length; i < max; ++i) 
+	      {
+	        
+	        if (self.groups[i].centroidMoved) 
+	        {
+	          moved++;
+	        }
+	      }
+	      return process.nextTick(iterate);
+	    }
+	    return iterate();			
   	}
 }
 
