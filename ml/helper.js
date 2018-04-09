@@ -2,7 +2,7 @@ const profile = require('./profile');
 const k_means = require('./kmeans');
 
 if(require.main == module)
-    run_main(3)
+    run_main(2)
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -71,8 +71,22 @@ function run_main(k_num)
 
 		k_means.clusterize(vectors, {k: k_num}, (err,res) => {
  		 	if (err) console.error(err);
-  			else console.log(res);
+  			// else console.log(res);
+
+  			for(var i = 0; i<res.length; i++)
+  			{
+  				console.log("-------------------------");
+  				console.log(res[i]['centroid']);
+  				console.log(res[i]['clusterInd']);
+  				for(var j =0; j< res[i]['clusterInd'].length; j++)
+  				{
+  					console.log(res[i]['clusterInd'][j]);
+  					console.log(vectors[res[i]['clusterInd'][j]]);
+  				}
+
+  			}
 		});
+
 		// console.log(k_num);
 		
 		// generate_randomlist(k_num, vectors.length, function(rand_vector)
