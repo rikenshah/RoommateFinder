@@ -83,6 +83,19 @@ class Group
     	}
     	return this;
   	}
+
+  	distanceObjects(self) 
+  	{
+    	if (!this.distances) 
+    	{
+      		this.distances = [];
+    	}
+    	for (let i = 0, max = self.v.length; i < max; ++i) 
+    	{
+      		this.distances[i] = self.distanceFunction(this.centroid, self.v[i]);
+    	}
+    	return this;
+  	}
 }
 
 class Clusterize 
