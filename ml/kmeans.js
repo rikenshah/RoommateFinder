@@ -66,6 +66,23 @@ class Group
 	    this.centroidMoved = !_.isEqual(this.centroid, this.centroidOld);
 	    return this;
   	}
+
+  	calculateCentroid() 
+  	{
+    	this.centroid = [];
+    	for (let i = 0; i < this.cluster.length; ++i) 
+    	{
+      		for (let j = 0, max = this.cluster[i].length; j < max; ++j) 
+      		{ 
+        		this.centroid[j] = this.centroid[j] ? this.centroid[j] + this.cluster[i][j] : this.cluster[i][j];
+      		}
+    	}
+    	for (let i = 0, max = this.centroid.length; i < max; ++i) 
+    	{
+      		this.centroid[i] = this.centroid[i] / this.cluster.length; 
+    	}
+    	return this;
+  	}
 }
 
 class Clusterize 
