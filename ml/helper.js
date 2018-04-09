@@ -2,7 +2,7 @@ const profile = require('./profile');
 const k_means = require('./kmeans');
 
 if(require.main == module)
-    run_main(2)
+    knn_helper()
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -110,5 +110,35 @@ function run_main(k_num)
 		// 	}
 		// 	console.log(cluster_points);
 		// })
+	});
+}
+
+function fetching_clusters(callback)
+{
+	var res;
+	profile.fetch_cluster(function(res) 
+	{
+		console.log(res[0]);
+		// let vectors = new Array();
+		// let user_id_list = new Array();
+		// for (let i = 0 ; i < res.length ; i++) {
+		// 	user_id_list[i] = [res[i]['user_id']];
+  // 			vectors[i] = [ res[i]['age'] , res[i]['gender'], res[i]['veg'], 
+  // 				res[i]['alcohol'], res[i]['smoke'], res[i]['roomshare'], 
+  // 				res[i]['price'], res[i]['pet_friendly'],res[i]['visitors'],
+  // 				res[i]['openness'],res[i]['aggreeableness'],
+  // 				res[i]['life_satisfaction']];
+		// }
+		callback(res);
+	});
+
+}
+
+function knn_helper(k_num)
+{
+	console.log("Hello");
+	fetching_clusters(function(vectors){
+		console.log("IN Helper");
+		console.log(vectors);
 	});
 }
