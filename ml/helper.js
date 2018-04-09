@@ -52,39 +52,49 @@ function run(callback)
 		// console.log("Hello");
 		console.log(res[0]);
 		let vectors = new Array();
+		let user_id_list = new Array();
 		for (let i = 0 ; i < res.length ; i++) {
+			user_id_list[i] = [res[i]['user_id']];
   			vectors[i] = [ res[i]['age'] , res[i]['gender'], res[i]['veg'], 
   				res[i]['alcohol'], res[i]['smoke'], res[i]['roomshare'], 
   				res[i]['price'], res[i]['pet_friendly'],res[i]['visitors'],
   				res[i]['openness'],res[i]['aggreeableness'],
   				res[i]['life_satisfaction']];
 		}
-		callback(vectors);
+		callback(vectors, user_id_list);
 	});
 
 }
 
 function run_main(k_num)
 {
-	run(function(vectors){
+	run(function(vectors, user_id_list){
 		console.log(vectors);
 
 		k_means.clusterize(vectors, {k: k_num}, (err,res) => {
  		 	if (err) console.error(err);
   			// else console.log(res);
-
+  			let clusters = new Array();
   			for(var i = 0; i<res.length; i++)
   			{
-  				console.log("-------------------------");
   				console.log(res[i]['centroid']);
-  				console.log(res[i]['clusterInd']);
+  				let user_ids = new Array();
   				for(var j =0; j< res[i]['clusterInd'].length; j++)
   				{
-  					console.log(res[i]['clusterInd'][j]);
-  					console.log(vectors[res[i]['clusterInd'][j]]);
+  					// console.log(user_id_list[res[i]['clusterInd'][j]]);
+  					user_ids.push(user_id_list[res[i]['clusterInd'][j]][0]);
   				}
-
+  				console.log(user_ids);
+  				var cluster_json = 
+  				{
+  					"cluster_number" : i,
+  					"centroid" : res[i]['centroid'],
+  					"user_list" : user_ids
+  				}
+  				console.log(cluster_json);
+  				clusters.push(cluster_json);
   			}
+  			console.log(clusters);
 		});
 
 		// console.log(k_num);
