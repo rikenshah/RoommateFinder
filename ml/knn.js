@@ -20,15 +20,24 @@ function euclidianDistance(a, b)
   return Math.sqrt(d);
 }
 
-function knn(input_arr, cluster_arr)
+function find_knn_cluster(input_arr, cluster_arr, callback)
 {
+	var minn = 1000;
+	var loc = -1;
 	for(var i=0; i<cluster_arr.length; i++)
 	{	
-		console.log(cluster_arr[i]);
+		// console.log(cluster_arr[i]);
+		var temp = euclidianDistance(cluster_arr[i], input_arr);
+		if(temp < minn)
+		{
+			minn = temp;
+			loc = i;
+		}
 	}
+	callback(loc);
 }
 
 module.exports = 
 { 
-    knn
+    find_knn_cluster
 };
