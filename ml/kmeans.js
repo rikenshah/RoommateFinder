@@ -3,6 +3,20 @@
 'use strict';
 const _ = require('underscore');
 
+function euclidianDistance(a, b) 
+{
+  if (a.length !== b.length) 
+  {
+    return (new Error('The vectors must have the same length'));
+  }
+  let d = 0.0;
+  for (let i = 0, max = a.length; i < max; ++i) 
+  {
+  	d += Math.pow((a[i] - b[i]), 2);
+  }
+  return Math.sqrt(d);
+}
+
 class Clusterize 
 {
 	constructor(vector, options, callback) 
