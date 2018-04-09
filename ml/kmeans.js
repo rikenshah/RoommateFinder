@@ -147,7 +147,15 @@ class Clusterize
     	return this;
   	}
 
-  	
+  	output() 
+  	{
+    	const out = [];
+    	for (let j = 0, max = this.groups.length; j < max; ++j) 
+    	{
+      		out[j] = _.pick(this.groups[j], 'centroid', 'clusterInd');
+    	}
+    	return out;
+  	}
 }
 
 exports.clusterize = (vector, options, callback) => {
