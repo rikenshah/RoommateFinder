@@ -25,6 +25,20 @@ function euclidianDistance(a, b)
   return Math.sqrt(d);
 }
 
+class Group 
+{
+  constructor() 
+  {
+    this.centroidMoved = true;
+  }
+
+  initCluster() 
+  {
+    this.cluster = [];
+    this.clusterInd = []; 
+  }
+}
+
 class Clusterize 
 {
 	constructor(vector, options, callback) 
