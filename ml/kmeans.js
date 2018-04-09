@@ -27,16 +27,45 @@ function euclidianDistance(a, b)
 
 class Group 
 {
-  constructor() 
-  {
-    this.centroidMoved = true;
-  }
+	constructor() 
+  	{
+    	this.centroidMoved = true;
+  	}
 
-  initCluster() 
-  {
-    this.cluster = [];
-    this.clusterInd = []; 
-  }
+  	initCluster() 
+  	{
+   		this.cluster = [];
+    	this.clusterInd = []; 
+  	}
+
+  	defineCentroid(self) 
+	{
+	  	this.centroidOld = (this.centroid) ? this.centroid : [];
+	    if (this.centroid && this.cluster.length > 0) 
+	    {
+	      this.calculateCentroid();
+	    } 
+	    else 
+	    { 
+	      const i = Math.floor(Math.random() * self.indexes.length);
+	      this.centroidIndex = self.indexes[i];
+	      self.indexes.splice(i, 1);
+	      this.centroid = [];
+	      if (!_.isArray(self.v[this.centroidIndex])) 
+	      { 
+	        this.centroid[0] = self.v[this.centroidIndex];
+	      } 
+	      else 
+	      {
+	        for (let j = 0, max = self.v[this.centroidIndex].length; j < max; ++j) 
+	        {
+	          this.centroid[j] = self.v[this.centroidIndex][j];
+	        }
+	      }
+	    }
+	    this.centroidMoved = !_.isEqual(this.centroid, this.centroidOld);
+	    return this;
+  	}
 }
 
 class Clusterize 
