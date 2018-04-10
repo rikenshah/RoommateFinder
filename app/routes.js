@@ -20,10 +20,15 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
     // Chatbox
+    // app.get('/chat', isLoggedIn, function(req, res) {
+    //   res.render('index2.ejs', {
+    //     user: req.user,
+    //     userId: req.userId
+    //   });
+    // });
     app.get('/chat', function(req, res) {
       res.render('index2.ejs');
     });
-
 
     // google ---------------------------------
 

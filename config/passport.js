@@ -67,7 +67,7 @@ module.exports = function(passport) {
                                 user.save(function(err) {
                                     if (err)
                                         return done(err);
-                                        
+
                                     return done(null, user);
                                 });
                             }
@@ -84,7 +84,7 @@ module.exports = function(passport) {
                             newUser.save(function(err) {
                                 if (err)
                                     return done(err);
-                                    
+
                                 return done(null, newUser);
                             });
                         }
@@ -102,7 +102,7 @@ module.exports = function(passport) {
                     user.save(function(err) {
                         if (err)
                             return done(err);
-                            
+
                         return done(null, user);
                     });
 
@@ -110,7 +110,7 @@ module.exports = function(passport) {
 
             });
         }else{
-            // fail        
+            // fail
             done(new Error("Invalid host domain"));
         }
     }));
