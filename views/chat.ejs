@@ -17,10 +17,14 @@
 <script src="SendBird.min.js"></script>
 <script src="build/widget.SendBird.js"></script>
 <script>
-  var appId='83D8E790-3E71-49E2-AB2D-61FF4AF8A6F2';
-  var userId = 'mshaikh1';
-  var nickname = 'ms1';
-  sbWidget.startWithConnect(appId, userId, nickname, function() {
+  //console.log(<% app_Id %>);
+  var appId= "<%= app_Id %>";
+  console.log(appId);
+  var userId = "<%= user.google.id %>";
+  console.log(userId);
+  var nickname = "<%= user.google.name %>";
+  console.log(nickname);
+  sbWidget.startWithConnect(appId, userId, nickname).then(function() {
     console.log('Chat Started with user id: ');
   });
 </script>
