@@ -1,3 +1,8 @@
+require('dotenv').config();
+
+const SendBird = require('sendbird-nodejs');
+const sb = SendBird(process.env.SendBird_Api_Token);
+
 module.exports = function(app, passport) {
 
 // normal routes ===============================================================
@@ -19,6 +24,28 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+    // Chatbox
+    app.get('/chat', isLoggedIn, function(req, res) {
+    const payload = {
+      "user_id": req.user.google.id,
+      "nickname": req.user.google.name,
+      "profile_url": ""
+    };
+    // Create a new user entry in the sendbird database
+    // sb.users.create(payload).then(function (response, err) {
+    //     if (err) {
+    //       throw err;
+    //     }
+    //     console.log('User Added Successfully');
+    // });
+      res.render('chat.ejs', {
+        app_Id : process.env.SendBird_App_Id,
+        user: req.user
+      });
+    });
+    // app.get('/chat', function(req, res) {
+    //   res.render('index2.ejs');
+    // });
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
@@ -79,10 +106,10 @@ module.exports = function(app, passport) {
     // google ---------------------------------
 
         // send to google to do the authentication
-        app.get('/auth/google', passport.authenticate('google', { 
+        app.get('/auth/google', passport.authenticate('google', {
              // Only show accounts that match the hosted domain.
             // hd: 'ncsu.edu',
-            scope : ['profile', 'email'] 
+            scope : ['profile', 'email']
         }));
 
         // the callback after google has authenticated the user

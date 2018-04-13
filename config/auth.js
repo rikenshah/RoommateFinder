@@ -19,6 +19,8 @@ module.exports = {
     //     'callbackURL'        : 'http://localhost:8080/auth/twitter/callback'
     // },
 
+    // Mateen: For Remote change the  callbackURL to http://findmeroommate.herokuapp.com/auth/google/callback
+    // For Local: http://localhost:8080/auth/google/callback
     'googleAuth' : {
         'clientID'         : process.env.GOOGLE_CLIENT_ID,
         'clientSecret'     : process.env.GOOGLE_CLIENT_SECRET,

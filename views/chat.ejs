@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <link rel='shortcut icon' href='https://s3.amazonaws.com/sendbird-static/favicon/favicon.ico' type='image/x-icon'>
+  <title>Chat</title>
+
+  <style>
+    body { margin: 0; background: #E9EBEE; }
+  </style>
+
+</head>
+<body>
+  <div id="sb_widget"></div>
+</body>
+
+<script src="SendBird.min.js"></script>
+<script src="build/widget.SendBird.js"></script>
+<script>
+  //console.log(<% app_Id %>);
+  var appId= "<%= app_Id %>";
+  console.log(appId);
+  var userId = "<%= user.google.id %>";
+  console.log(userId);
+  var nickname = "<%= user.google.name %>";
+  console.log(nickname);
+  sbWidget.startWithConnect(appId, userId, nickname).then(function() {
+    console.log('Chat Started with user id: ');
+  });
+</script>
+</html>
