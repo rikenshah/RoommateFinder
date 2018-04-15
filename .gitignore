@@ -1,5 +1,7 @@
 auth.js
 
+.git/
+
 # Logs
 logs
 *.log
