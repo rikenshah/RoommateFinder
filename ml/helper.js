@@ -32,6 +32,27 @@ function euclidianDistance(a, b)
 }
 
 // a.sort(compareSecondColumn);
+
+function sorting(final, callback)
+{	console.log("Check 1");
+	for(var i=0; i<final.length; i++)
+	{
+		for(var j =i+1; j<final.length; j++)
+		{
+			console.log(final_list[i][1] )
+			if(final[i][1] > final[j][1])
+			{
+				var temp = final[i];
+				final[i] = final[j];
+				final[j] = temp;
+			}
+		}
+		console.log("Check");
+	}
+	console.log("Check 2");
+	callback(final);
+}
+
 function compareSecondColumn(a, b) {
     if (a[1] === b[1]) {
         return 0;
@@ -222,7 +243,11 @@ function knn_helper(input_arr, n)
 
 				console.log(final_list);
 				final_list.sort(compareSecondColumn);
+				// sorting(final_list, function(sorted_list){
+				// 	console.log("Check 3");
 					console.log(final_list);
+				// });
+
 			});
 
 		});
