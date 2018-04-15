@@ -1,0 +1,19 @@
+{
+	"user_id":1005,
+	"age":0.6,
+	"gender":1,
+	"veg" : 0,
+	"alcohol" : 0,
+	"smoke":0,
+	"roomshare":1,
+	"price":200,
+	"earlier_movein_date":"04/15/2018",
+	"latest_movein_date":"05/15/2018",
+	"duration":90,
+	"pet_friendly":1,
+	"visitors":1,
+	"profession":"Student",
+	"openness": 0.5,
+	"aggreeableness":0.7,
+	"life_satisfaction" : 0.4
+}
