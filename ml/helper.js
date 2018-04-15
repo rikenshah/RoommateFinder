@@ -3,7 +3,7 @@ const k_means = require('./kmeans');
 const knn = require('./knn');
 
 if(require.main == module)
-    knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,1000,0.1,0.1,0.1,0.1,0.1])
+    knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,1000,0.1,0.1,0.1,0.1,0.1], 1)
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -44,7 +44,7 @@ function generate_randomlist(k, size, callback)
     callback(rand_vector);
 }
 
-function run(callback)
+function profile_array(callback)
 {
 	// console.log("IN run");
 	var res;
@@ -67,9 +67,9 @@ function run(callback)
 
 }
 
-function run_main(k_num)
+function kmeans_helper(k_num)
 {
-	run(function(vectors, user_id_list){
+	profile_array(function(vectors, user_id_list){
 		console.log(vectors);
 
 		k_means.clusterize(vectors, {k: k_num}, (err,res) => {
@@ -130,7 +130,19 @@ function fetching_clusters(callback)
 
 }
 
-function knn_helper(input_arr)
+function list_user(res, help, n, callback)
+{
+	for(var i =0; i<res.length; i++)
+	{
+		if(res[i]['cluster_number'] == help)
+		{
+			console.log(res[i]['user_list'].length);
+			console.log(n);
+		}
+	}
+}
+
+function knn_helper(input_arr, n)
 {
 	// console.log("Hello");
 	fetching_clusters(function(vectors, res){
@@ -141,13 +153,22 @@ function knn_helper(input_arr)
 			console.log(help);
 			for(var i = 0; i <res.length; i++)
 			{
-				console.log(res[i]);
+				// console.log(res[i]);
 				if(res[i]['cluster_number'] == help)
 				{
-					console.log(res[i]['user_list']);
-					return(res[i]['user_list']);
+					// console.log(res[i]['user_list']);
+					// return(res[i]['user_list']);
+					if(res[i]['user_list'].length < n)
+					{
+						n = res[i]['user_list'].length;
+					}
 				}
 			}
+			list_user(res, help, n, function(final_list)
+			{
+				console.log(final_list);
+			});
+
 		});
 	});
 }
