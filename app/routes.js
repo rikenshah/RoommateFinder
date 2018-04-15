@@ -12,6 +12,13 @@ module.exports = function(app, passport) {
         res.render('index.ejs');
     });
 
+    // DASHBOARD SECTION =========================
+    app.get('/dashboard', isLoggedIn, function(req, res) {
+        res.render('dashboard.ejs', {
+            user : req.user
+        });
+    });
+
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
@@ -115,7 +122,7 @@ module.exports = function(app, passport) {
         // the callback after google has authenticated the user
         app.get('/auth/google/callback',
             passport.authenticate('google', {
-                successRedirect : '/profile',
+                successRedirect : '/dashboard',
                 failureRedirect : '/'
             }));
 
