@@ -37,11 +37,18 @@ module.exports = function(app, passport) {
             user : req.user
         });
     });
-    app.post('/searchResult', isLoggedIn, function(req, res) {
+    app.get('/searchResult', isLoggedIn, function(req, res) {
         res.render('searchResult.ejs', {
             user : req.user
         });
     });
+
+    // Handle profile
+    app.post('/handle_profile',isLoggedIn, function (req,res) {
+      console.log(req.body);
+      res.redirect('/dashboard');
+    });
+
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {

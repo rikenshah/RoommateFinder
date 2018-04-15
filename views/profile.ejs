@@ -53,7 +53,7 @@
     <div class="row">
 
       <div>
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post" role="form" action="/handle_profile">
           <fieldset>
             <!-- Name input-->
             <div class="form-group">
@@ -70,27 +70,27 @@
 
             <!-- Age input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="Age">Age</label>
+              <label class="col-md-4 control-label" for="age">Age</label>
               <div class="col-md-4">
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-birthday-cake"></i>
                   </div>
-                  <input id="Age" name="Age" type="number" placeholder="Age" class="form-control input-md">
+                  <input id="age" name="age" type="number" class="form-control input-md">
                 </div>
               </div>
             </div>
 
             <!-- Gender -->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="Gender">Gender</label>
+              <label class="col-md-4 control-label" for="gender">Gender</label>
               <div class="col-md-4">
-                <label class="radio-inline" for="Gender-0">
-                  <input type="radio" name="Gender" id="Gender-0" value="1" checked="checked">Male </label>
+                <label class="radio-inline" for="gender-0">
+                  <input type="radio" name="gender" id="gender-0" value="0" checked="checked">Male </label>
                 <label class="radio-inline" for="Gender-1">
-                  <input type="radio" name="Gender" id="Gender-1" value="2"> Female </label>
-                <label class="radio-inline" for="Gender-2">
-                  <input type="radio" name="Gender" id="Gender-2" value="3">Other</label>
+                  <input type="radio" name="gender" id="gender-1" value="1"> Female </label>
+                <label class="radio-inline" for="gender-2">
+                  <input type="radio" name="gender" id="gender-2" value="2">Other</label>
               </div>
             </div>
 
@@ -166,10 +166,10 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="Rate">Budget</label>
               <div class="col-md-2">
-                  <input id="Min" name="Min" type="number" placeholder="Minimum Budget" class="form-control input-md">
+                  <input id="min_budget" name="min_budget" type="number" placeholder="Minimum Budget" class="form-control input-md">
               </div>
               <div class="col-md-2">
-                <input id="Max" name="Max" type="number" placeholder="Maximum Budget" class="form-control input-md">
+                <input id="max_budget" name="max_budget" type="number" placeholder="Maximum Budget" class="form-control input-md">
               </div>
               </div>
 
@@ -233,7 +233,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label"></label>
               <div class="col-md-4">
-                <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</a>
+                <button type ="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</button>
                 <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
 
               </div>

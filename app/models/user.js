@@ -9,25 +9,24 @@ var userSchema = mongoose.Schema({
         email        : String,
         password     : String
     },
-    facebook         : {
-        id           : String,
-        token        : String,
-        name         : String,
-        email        : String
-    },
-    twitter          : {
-        id           : String,
-        token        : String,
-        displayName  : String,
-        username     : String
-    },
+    name : String,
+    age : Number,
+    gender: Number,
+    dietary: Number,
+    drinking: Number,
+    smoking: Number,
+    room: Number,
+    min_budget: Number,
+    max_budget: Number,
+    pet: Number,
+    visitors: Number,
+    Summary: Text,
     google           : {
         id           : String,
         token        : String,
         email        : String,
         name         : String
     }
-
 });
 
 // generating a hash
