@@ -3,7 +3,7 @@ const k_means = require('./kmeans');
 const knn = require('./knn');
 
 if(require.main == module)
-    knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,1000,0.1,0.1,0.1,0.1,0.1], 1)
+    knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,10,0.1,0.1,0.1,0.1,0.1], 1)
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -29,6 +29,16 @@ function euclidianDistance(a, b)
   	}
   }
   return Math.sqrt(d);
+}
+
+// a.sort(compareSecondColumn);
+function compareSecondColumn(a, b) {
+    if (a[1] === b[1]) {
+        return 0;
+    }
+    else {
+        return (a[1] < b[1]) ? -1 : 1;
+    }
 }
 
 function inArray(check,arr_check, callback)
@@ -152,7 +162,7 @@ function fetching_clusters(callback)
 
 }
 
-function list_user(res, help, n, callback)
+function list_user(input_arr, res, help, n, callback)
 {
 	for(var i =0; i<res.length; i++)
 	{
@@ -163,9 +173,24 @@ function list_user(res, help, n, callback)
 	}
 	profile_array(function(vectors, user_id_list)
 	{
-		console.log(vectors, user_id_list);
-		console.log(check_list);
-
+		var temp_array_dist = new Array();
+		// console.log(vectors, user_id_list.length);
+		// console.log(check_list.length);
+		for(var j = 0; j< user_id_list.length; j++)
+		{
+			for(var k =0; k< check_list.length; k++)
+			{
+				if(user_id_list[j] == check_list[k])
+				{
+					// console.log(user_id_list[j][0], check_list[k]);
+					// console.log(input_arr, vectors[j]);
+					var temp_dist = euclidianDistance(input_arr, vectors[j]);
+					temp_array_dist.push([check_list[k], temp_dist]);
+				}
+			}
+		}
+		// console.log(temp_array_dist);
+		callback(temp_array_dist);
 	});
 	
 }
@@ -192,9 +217,12 @@ function knn_helper(input_arr, n)
 					}
 				}
 			}
-			list_user(res, help, n, function(final_list)
+			list_user(input_arr, res, help, n, function(final_list)
 			{
+
 				console.log(final_list);
+				final_list.sort(compareSecondColumn);
+					console.log(final_list);
 			});
 
 		});
