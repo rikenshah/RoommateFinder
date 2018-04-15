@@ -32,12 +32,12 @@ module.exports = function(app, passport) {
       "profile_url": ""
     };
     // Create a new user entry in the sendbird database
-    // sb.users.create(payload).then(function (response, err) {
-    //     if (err) {
-    //       throw err;
-    //     }
-    //     console.log('User Added Successfully');
-    // });
+    sb.users.create(payload).then(function (response, err) {
+        if (err) {
+          throw err;
+        }
+        console.log('User Added Successfully');
+    });
       res.render('chat.ejs', {
         app_Id : process.env.SendBird_App_Id,
         user: req.user
