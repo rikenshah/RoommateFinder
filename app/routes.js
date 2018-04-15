@@ -25,6 +25,17 @@ module.exports = function(app, passport) {
             user : req.user
         });
     });
+    //Search section
+    app.get('/search', isLoggedIn, function(req, res) {
+        res.render('search.ejs', {
+            user : req.user
+        });
+    });
+    app.post('/searchResult', isLoggedIn, function(req, res) {
+        res.render('searchResult.ejs', {
+            user : req.user
+        });
+    });
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
