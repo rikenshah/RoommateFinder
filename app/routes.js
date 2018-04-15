@@ -38,6 +38,7 @@ module.exports = function(app, passport) {
         });
     });
     app.post('/searchResult', isLoggedIn, function(req, res) {
+        console.log(req.body.roomSharing)
         res.render('searchResult.ejs', {
             user : req.user
         });
