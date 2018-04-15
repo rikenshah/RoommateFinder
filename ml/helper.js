@@ -9,6 +9,28 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+function euclidianDistance(a, b) 
+{
+  if (a.length !== b.length) 
+  {
+    return (new Error('The vectors must have the same length'));
+  }
+  let d = 0.0;
+  for (let i = 0, max = a.length; i < max; ++i) 
+  {
+  	// d += Math.pow((a[i] - b[i]), 2);
+  	if(i <= 8)
+  	{
+  		d += 0.9*(Math.pow((a[i] - b[i]), 2));	
+  	}
+  	else
+  	{
+  		d += 0.1*(Math.pow((a[i] - b[i]), 2));	
+  	}
+  }
+  return Math.sqrt(d);
+}
+
 function inArray(check,arr_check, callback)
 {
     var count=arr_check.length;
@@ -51,7 +73,7 @@ function profile_array(callback)
 	profile.fetch_profile(function(res) 
 	{
 		// console.log("Hello");
-		console.log(res[0]);
+		// console.log(res[0]);
 		let vectors = new Array();
 		let user_id_list = new Array();
 		for (let i = 0 ; i < res.length ; i++) {
@@ -136,10 +158,16 @@ function list_user(res, help, n, callback)
 	{
 		if(res[i]['cluster_number'] == help)
 		{
-			console.log(res[i]['user_list'].length);
-			console.log(n);
+			var check_list = res[i]['user_list'];
 		}
 	}
+	profile_array(function(vectors, user_id_list)
+	{
+		console.log(vectors, user_id_list);
+		console.log(check_list);
+
+	});
+	
 }
 
 function knn_helper(input_arr, n)
