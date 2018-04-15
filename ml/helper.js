@@ -3,7 +3,9 @@ const k_means = require('./kmeans');
 const knn = require('./knn');
 
 if(require.main == module)
-    knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,10,0.1,0.1,0.1,0.1,0.1], 6)
+    main()
+
+
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -216,7 +218,7 @@ function list_user(input_arr, res, help, n, callback)
 	
 }
 
-function knn_helper(input_arr, n)
+function knn_helper(input_arr, n, callback)
 {
 	// console.log("Hello");
 	fetching_clusters(function(vectors, res){
@@ -253,9 +255,18 @@ function knn_helper(input_arr, n)
 					knn_user_ids.push(final_list[j][0]);
 				}
 				console.log(knn_user_ids);
-
+				callback(knn_user_ids);
 			});
 
 		});
 	});
+}
+
+function main()
+{
+	knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,10,0.1,0.1,0.1,0.1,0.1], 6, function(temp)
+	{
+			console.log(temp);
+	});
+
 }
