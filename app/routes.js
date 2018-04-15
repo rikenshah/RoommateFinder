@@ -9,7 +9,13 @@ module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        var user = null;
+        if(req.user){
+            user = req.user
+        }
+        res.render('index.ejs',{
+            user : user
+        });
     });
 
     // DASHBOARD SECTION =========================
