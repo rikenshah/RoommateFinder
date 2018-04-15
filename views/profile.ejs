@@ -174,17 +174,11 @@
               </div>
 
             <!-- Dates -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="room">Dates</label>
-              <div class="col-md-4">
-                <div class="input-group date" data-provide="datepicker">
-                  <input type="text" class="form-control">
-                  <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                  </div>
-                </div>
-              </div>
+            <div class="form-group"> <!-- Date input -->
+              <label class="control-label" for="date">Date</label>
+              <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
             </div>
+
 
             <!-- Pet Friendly -->
             <div class="form-group">
@@ -271,8 +265,16 @@
   </div>
 
 <script>
-$(document).ready(function () {
-  $('.datepicker').datepicker();
-});
+  $(document).ready(function(){
+        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        var options={
+          format: 'mm/dd/yyyy',
+          container: container,
+          todayHighlight: true,
+          autoclose: true,
+        };
+        date_input.datepicker(options);
+      })
 </script>
 <% include ./partials/footer %>
