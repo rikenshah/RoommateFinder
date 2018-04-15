@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const SendBird = require('sendbird-nodejs');
 const sb = SendBird(process.env.SendBird_Api_Token);
+const user_profile = require('./controllers/user_profile');
 
 module.exports = function(app, passport) {
 
@@ -27,9 +28,16 @@ module.exports = function(app, passport) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
+      // to find profile of req.user
+      // if null
         res.render('profile.ejs', {
             user : req.user
         });
+        // else
+        // res.render('profile.ejs', {
+        //     user : req.user,
+        //     profile: pro
+        // });
     });
     //Search section
     app.get('/search', isLoggedIn, function(req, res) {
@@ -44,10 +52,7 @@ module.exports = function(app, passport) {
     });
 
     // Handle profile
-    app.post('/handle_profile',isLoggedIn, function (req,res) {
-      console.log(req.body);
-      res.redirect('/dashboard');
-    });
+    app.post('/handle_profile',isLoggedIn, user_profile.add);
 
 
     // LOGOUT ==============================

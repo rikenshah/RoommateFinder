@@ -18,9 +18,11 @@ var userSchema = mongoose.Schema({
     room: Number,
     min_budget: Number,
     max_budget: Number,
+    move_in_date: Date,
+    move_out_date: Date,
     pet: Number,
     visitors: Number,
-    Summary: Text,
+    Summary: String,
     google           : {
         id           : String,
         token        : String,

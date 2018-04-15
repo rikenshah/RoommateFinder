@@ -28,27 +28,6 @@
             </div>
         </div> -->
 
-      <!-- FACEBOOK INFORMATION -->
-      <!-- <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-      <!-- <% if (user.facebook.token) { %>
-                    <p>
-                        <strong>id</strong>: <%= user.facebook.id %><br>
-                        <strong>token</strong>: <%= user.facebook.token %><br>
-                        <strong>email</strong>: <%= user.facebook.email %><br>
-                        <strong>name</strong>: <%= user.facebook.name %><br>
-                    </p>
-
-                    <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
-                <% } %>
-
-            </div>
-        </div> -->
     </div>
     <div class="row">
 
@@ -57,13 +36,16 @@
           <fieldset>
             <!-- Name input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="Name (Full name)">Name (Full name)</label>
+              <label class="col-md-4 control-label" for="name">Name (Full name)</label>
               <div class="col-md-4">
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-user"></i>
                   </div>
-                  <input id="Name (Full name)" name="Name (Full name)" type="text" placeholder="Name (Full name)" class="form-control input-md">
+                  <!-- <?= if profile> -->
+                  <!-- <input id="name" name="name" type="text" value=<> placeholder="Name" class="form-control input-md"> -->
+                  <!-- else -->
+                  <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
                 </div>
               </div>
             </div>
@@ -173,12 +155,21 @@
               </div>
               </div>
 
-            <!-- Dates -->
-            <div class="form-group"> <!-- Date input -->
-              <label class="control-label" for="date">Date</label>
-              <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+            <!--Move-In Date -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="move_in_date">Move-In Date</label>
+              <div class="col-md-4">
+                <input class="form-control" id="move_in_date" name="move_in_date" placeholder="MM/DD/YYY" type="text"/>
+              </div>
             </div>
 
+            <!--  Move-Out Date -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="move_out_date">Move-Out Date</label>
+              <div class="col-md-4">
+                <input class="form-control" id="move_out_date" name="move_out_date" placeholder="MM/DD/YYY" type="text"/>
+              </div>
+            </div>
 
             <!-- Pet Friendly -->
             <div class="form-group">
@@ -266,7 +257,8 @@
 
 <script>
   $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var move_in_date_input=$('input[name="move_in_date"]'); //our move in  date input has the name "move in date"
+        var move_out_date_input=$('input[name="move_out_date"]'); //our move out  date input has the name "move out date"
         var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
         var options={
           format: 'mm/dd/yyyy',
@@ -274,7 +266,8 @@
           todayHighlight: true,
           autoclose: true,
         };
-        date_input.datepicker(options);
+        move_in_date_input.datepicker(options);
+        move_out_date_input.datepicker(options);
       })
 </script>
 <% include ./partials/footer %>
