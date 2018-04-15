@@ -1,0 +1,72 @@
+<% include ./partials/header %>
+
+<div class="container container-fluid">
+    <h2>Search a Roommate!</h2>
+    <form id="searchForm" method="POST" action="/searchResult">
+    <p> Roommate Sharing: Do you want to share?
+    "<select id='roomSharing' value='2' name='roomSharing'>
+        <option value='1' >Yes</option>
+        <option value='2' >No</option>
+        <option value='3' selected='selected'>Does not matter</option>
+    </select>"
+    </p>
+
+    <p> Drink: Do you want a drinking buddy?
+        "<select id='drink' value='2' name='drink'>
+            <option value='1' >Yes</option>
+            <option value='2' >No</option>
+            <option value='3' selected='selected'>Does not matter</option>
+        </select>"
+    </p>
+
+    <p> Veg/Non-veg: Are you a meat lover?
+        "<select id='veg' value='2' name='veg'>
+            <option value='1' >Yes</option>
+            <option value='2' >No</option>
+            <option value='3' selected='selected'>Does not matter</option>
+        </select>"
+    </p>
+
+    <p> Smoke: Okay with a smoker?
+        "<select id='smoke' value='2' name='smoke'>
+            <option value='1' selected='selected'>Yes</option>
+            <option value='2' >No</option>
+            <option value='3' selected='selected'>Does not matter</option>
+        </select>"
+    </p>
+
+    <p> Male/Female/Doesn't matter
+        "<select id='livingPreference' value='2' name='livingPreference'>
+            <option value='1' >Male</option>
+            <option value='2' >Female</option>
+            <option value='3'selected='selected' >Does not matter</option>
+        </select>"
+    </p>
+
+    <p> Age: Any age preferences?
+        "<select id='age' value='2' name='age'>
+            <option value='1' >Male</option>
+            <option value='2' >Female</option>
+            <option value='3' selected='selected' >Does not matter</option>
+        </select>"
+    </p>
+
+    <p> Budget:Any Budget constraints?
+        "<select id='age' value='2' name='age'>
+            <option value='1' >Male</option>
+            <option value='2' >Female</option>
+            <option value='3' selected='selected' >Does not matter</option>
+        </select>"
+    </p>
+    <p> Earliest Move in date
+        "<select id='age' value='2' name='age'>
+            <option value='1' >Male</option>
+            <option value='2' >Female</option>
+            <option value='3' selected='selected' >Does not matter</option>
+        </select>"
+    </p>
+        <input type="submit" />
+    </form>
+</div>
+
+<% include ./partials/footer %>

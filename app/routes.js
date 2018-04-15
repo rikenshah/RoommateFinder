@@ -9,7 +9,13 @@ module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        var user = null;
+        if(req.user){
+            user = req.user
+        }
+        res.render('index.ejs',{
+            user : user
+        });
     });
 
     // DASHBOARD SECTION =========================
@@ -22,6 +28,17 @@ module.exports = function(app, passport) {
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
+            user : req.user
+        });
+    });
+    //Search section
+    app.get('/search', isLoggedIn, function(req, res) {
+        res.render('search.ejs', {
+            user : req.user
+        });
+    });
+    app.post('/searchResult', isLoggedIn, function(req, res) {
+        res.render('searchResult.ejs', {
             user : req.user
         });
     });
