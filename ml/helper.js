@@ -3,7 +3,7 @@ const k_means = require('./kmeans');
 const knn = require('./knn');
 
 if(require.main == module)
-    knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,10,0.1,0.1,0.1,0.1,0.1], 1)
+    knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,10,0.1,0.1,0.1,0.1,0.1], 6)
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -241,12 +241,18 @@ function knn_helper(input_arr, n)
 			list_user(input_arr, res, help, n, function(final_list)
 			{
 
-				console.log(final_list);
+				// console.log(final_list);
 				final_list.sort(compareSecondColumn);
 				// sorting(final_list, function(sorted_list){
 				// 	console.log("Check 3");
-					console.log(final_list);
+					// console.log(final_list);
 				// });
+				var knn_user_ids = new Array();
+				for(var j =0; j< final_list.length; j++)
+				{
+					knn_user_ids.push(final_list[j][0]);
+				}
+				console.log(knn_user_ids);
 
 			});
 
