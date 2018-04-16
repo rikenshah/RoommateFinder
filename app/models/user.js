@@ -22,6 +22,11 @@ var userSchema = mongoose.Schema({
     move_out_date: Date,
     pet: Number,
     visitors: Number,
+    openness: Number,
+    conscientiousness: Number,
+    neuroticism: Number,
+    agreeableness: Number,
+    extraversion: Number,
     Summary: String,
     google           : {
         id           : String,
