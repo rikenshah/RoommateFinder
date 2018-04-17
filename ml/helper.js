@@ -103,19 +103,20 @@ function profile_array(callback)
 {
 	// console.log("IN run");
 	var res;
-	profile.fetch_profile(function(res) 
+	profile.fetch_users(function(res) 
 	{
-		// console.log("Hello");
-		// console.log(res[0]);
+		console.log("Hello");
+		console.log(res);
 		let vectors = new Array();
 		let user_id_list = new Array();
-		for (let i = 0 ; i < res.length ; i++) {
-			user_id_list[i] = [res[i]['user_id']];
-  			vectors[i] = [ res[i]['age'] , res[i]['gender'], res[i]['veg'], 
-  				res[i]['alcohol'], res[i]['smoke'], res[i]['roomshare'], 
-  				res[i]['price'], res[i]['pet_friendly'],res[i]['visitors'],
-  				res[i]['openness'],res[i]['aggreeableness'],
-  				res[i]['life_satisfaction']];
+		for (let i = 2 ; i < res.length ; i++) {
+			user_id_list[i] = [res[i]['google']['id']];
+  			vectors[i] = [ (res[i]['age'] -18)/82 , res[i]['gender'], res[i]['dietary'], 
+  				res[i]['drinking'], res[i]['smoking'], res[i]['room'], 
+  				res[i]['max_budget']-res[i]['min_budget'], res[i]['pet'],res[i]['visitors'],
+  				res[i]['openness'], res[i]['conscientiousness'],
+  				res[i]['neuroticism'], res[i]['agreeableness'],
+  				res[i]['extraversion']];
 		}
 		callback(vectors, user_id_list);
 	});
@@ -125,7 +126,7 @@ function profile_array(callback)
 function kmeans_helper(k_num)
 {
 	profile_array(function(vectors, user_id_list){
-		console.log(vectors);
+		console.log(vectors, user_id_list);
 
 		k_means.clusterize(vectors, {k: k_num}, (err,res) => {
  		 	if (err) console.error(err);
@@ -264,9 +265,11 @@ function knn_helper(input_arr, n, callback)
 
 function main()
 {
-	knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,10,0.1,0.1,0.1,0.1,0.1], 6, function(temp)
-	{
-			console.log(temp);
-	});
+	kmeans_helper(7);
+
+	// knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,10,0.1,0.1,0.1,0.1,0.1], 6, function(temp)
+	// {
+	// 		console.log(temp);
+	// });
 
 }

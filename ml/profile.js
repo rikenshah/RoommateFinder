@@ -12,6 +12,43 @@ mongoose.connect('mongodb://seprojuser:seprojuser123@ds117729.mlab.com:17729/roo
 
 var Schema = mongoose.Schema;
 
+var user_schema = mongoose.Schema({
+
+    local            : {
+        email        : String,
+        password     : String
+    },
+    name : String,
+    age : Number,
+    gender: Number,
+    dietary: Number,
+    drinking: Number,
+    smoking: Number,
+    room: Number,
+    min_budget: Number,
+    max_budget: Number,
+    move_in_date: Date,
+    move_out_date: Date,
+    pet: Number,
+    visitors: Number,
+    openness: Number,
+    conscientiousness: Number,
+    neuroticism: Number,
+    agreeableness: Number,
+    extraversion: Number,
+    Summary: String,
+    google           : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    }
+},
+{
+   collection: 'users'
+}
+);
+
 var profile_schema = new Schema(
 	{
 	  user_id: 'number',
@@ -50,6 +87,7 @@ var cluster_schema = new Schema(
 
 var profile = mongoose.model('profile', profile_schema);
 var cluster = mongoose.model('cluster', cluster_schema);
+var users = mongoose.model('users', user_schema);
 
 module.exports = {
   // return the list of all subjects
@@ -67,7 +105,14 @@ module.exports = {
       if (err) return err;
       callback(res);
     });
-  }
+  },
+
+  fetch_users: function(callback) {
+    users.find({}, '', function(err, res) {
+      if (err) return err;
+      callback(res);
+    });
+  },
 }
 
 
