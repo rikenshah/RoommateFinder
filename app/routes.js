@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const SendBird = require('sendbird-nodejs');
 const sb = SendBird(process.env.SendBird_Api_Token);
+const user_profile = require('./controllers/user_profile');
 
 module.exports = function(app, passport) {
 
@@ -9,15 +10,51 @@ module.exports = function(app, passport) {
 
     // show the home page (will also have our login links)
     app.get('/', function(req, res) {
-        res.render('index.ejs');
+        var user = null;
+        if(req.user){
+            user = req.user
+        }
+        res.render('index.ejs',{
+            user : user
+        });
+    });
+
+    // DASHBOARD SECTION =========================
+    app.get('/dashboard', isLoggedIn, function(req, res) {
+        res.render('dashboard.ejs', {
+            user : req.user
+        });
     });
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
+      // to find profile of req.user
+      // if null
         res.render('profile.ejs', {
             user : req.user
         });
+        // else
+        // res.render('profile.ejs', {
+        //     user : req.user,
+        //     profile: pro
+        // });
     });
+    //Search section
+    app.get('/search', isLoggedIn, function(req, res) {
+        res.render('search.ejs', {
+            user : req.user
+        });
+    });
+    app.post('/searchResult', isLoggedIn, function(req, res) {
+        console.log(req.body.roomSharing)
+        res.render('searchResult.ejs', {
+            user : req.user
+        });
+    });
+
+    // Handle profile
+    app.post('/handle_profile',isLoggedIn, user_profile.add);
+
 
     // LOGOUT ==============================
     app.get('/logout', function(req, res) {
@@ -32,12 +69,12 @@ module.exports = function(app, passport) {
       "profile_url": ""
     };
     // Create a new user entry in the sendbird database
-    // sb.users.create(payload).then(function (response, err) {
-    //     if (err) {
-    //       throw err;
-    //     }
-    //     console.log('User Added Successfully');
-    // });
+    sb.users.create(payload).then(function (response, err) {
+        if (err) {
+          throw err;
+        }
+        console.log('User Added Successfully');
+    });
       res.render('chat.ejs', {
         app_Id : process.env.SendBird_App_Id,
         user: req.user
@@ -115,7 +152,7 @@ module.exports = function(app, passport) {
         // the callback after google has authenticated the user
         app.get('/auth/google/callback',
             passport.authenticate('google', {
-                successRedirect : '/profile',
+                successRedirect : '/dashboard',
                 failureRedirect : '/'
             }));
 

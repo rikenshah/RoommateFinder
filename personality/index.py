@@ -49,12 +49,12 @@ def predict_from_like_ids(token, like_ids):
 token = auth(3459, 'vmp75o3e1mqq9adt4968vqpdvv')
 
 # /text
-prediction_result = predict_from_text(token, "The world of computer science fascinates me. How a bunch of ones and zeros bundled with an enormous amount of creativity drives the technology at this time of the world is quite astonishing. From early on, my vision became clear to be a part of this community and contribute in whatever ways I can.Over the academic years, I have mastered a variety of software development skills and worked on numerous projects to enhance those skills. In my bachelor's course, I have developed a keen interest in fields of Natural Language Processing and Machine learning.I am focused on making computers talk. If we can converse with them swiftly and efficiently in natural language, I believe, we can overcome the last barrier to enter into a new era of technology and automation. Automation is the key to the evolution of computers and simultaneous development of human race, albeit with a right amount of control. (We don't want Transformers in real-life, though it would be pretty cool..!)")
+prediction_result = predict_from_text(token, "hello world")
 print json.dumps(prediction_result, indent=4)
 
 # /like ids
-prediction_result = predict_from_like_ids(token, ["5845317146", "6460713406", "22404294985", "35312278675",
-                                                  "105930651606", "171605907303", "199592894970", "274598553922",
-                                                  "340368556015", "100270610030980"])
+# prediction_result = predict_from_like_ids(token, ["5845317146", "6460713406", "22404294985", "35312278675",
+#                                                   "105930651606", "171605907303", "199592894970", "274598553922",
+#                                                   "340368556015", "100270610030980"])
 print json.dumps(prediction_result, indent=4)
 

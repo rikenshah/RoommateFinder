@@ -1,25 +1,15 @@
-<!doctype html>
-<html>
-<head>
-    <title>Node Authentication</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body         { padding-top:80px; word-wrap:break-word; }
-    </style>
-</head>
-<body>
-<div class="container">
+<% include ./partials/header %>
+  <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+      <h1><span class="fa fa-anchor"></span> Profile Page</h1>
+      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
+      <!-- LOCAL INFORMATION -->
+      <!-- <div class="col-sm-6">
             <div class="well">
                 <h3><span class="fa fa-user"></span> Local</h3>
 
@@ -29,83 +19,255 @@
                         <strong>email</strong>: <%= user.local.email %><br>
                         <strong>password</strong>: <%= user.local.password %>
                     </p>
-                    
+
                     <a href="/unlink/local" class="btn btn-default">Unlink</a>
                 <% } else { %>
                     <a href="/connect/local" class="btn btn-default">Connect Local</a>
                 <% } %>
 
             </div>
-        </div>
+        </div> -->
 
-        <!-- FACEBOOK INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-                <% if (user.facebook.token) { %>
-                    <p>
-                        <strong>id</strong>: <%= user.facebook.id %><br>
-                        <strong>token</strong>: <%= user.facebook.token %><br>
-                        <strong>email</strong>: <%= user.facebook.email %><br>
-                        <strong>name</strong>: <%= user.facebook.name %><br>
-                    </p>
-
-                    <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
-                <% } %>
-
-            </div>
-        </div>
     </div>
     <div class="row">
 
-        <!-- TWITTER INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-info"><span class="fa fa-twitter"></span> Twitter</h3>
-
-                <% if (user.twitter.token) { %>
-                    <p>
-                        <strong>id</strong>: <%= user.twitter.id %><br>
-                        <strong>token</strong>: <%= user.twitter.token %><br>
-                        <strong>display name</strong>: <%= user.twitter.displayName %><br>
-                        <strong>username</strong>: <%= user.twitter.username %>
-                    </p>
-
-                    <a href="/unlink/twitter" class="btn btn-info">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/twitter" class="btn btn-info">Connect Twitter</a>
-                <% } %>
-
+      <div>
+        <form class="form-horizontal" method="post" role="form" action="/handle_profile">
+          <fieldset>
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="name">Name (Full name)</label>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <!-- <?= if profile> -->
+                  <!-- <input id="name" name="name" type="text" value=<> placeholder="Name" class="form-control input-md"> -->
+                  <!-- else -->
+                  <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
+                </div>
+              </div>
             </div>
-        </div>
 
-        <!-- GOOGLE INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
-
-                <% if (user.google.token) { %>
-                    <p>
-                        <strong>id</strong>: <%= user.google.id %><br>
-                        <strong>token</strong>: <%= user.google.token %><br>
-                        <strong>email</strong>: <%= user.google.email %><br>
-                        <strong>name</strong>: <%= user.google.name %>
-                    </p>
-
-                    <a href="/unlink/google" class="btn btn-danger">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/google" class="btn btn-danger">Connect Google</a>
-                <% } %>
-
+            <!-- Age input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="age">Age</label>
+              <div class="col-md-4">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-birthday-cake"></i>
+                  </div>
+                  <input id="age" name="age" type="number" class="form-control input-md">
+                </div>
+              </div>
             </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="gender">Gender</label>
+              <div class="col-md-4">
+                <label class="radio-inline" for="gender-0">
+                  <input type="radio" name="gender" id="gender-0" value="0" checked="checked">Male </label>
+                <label class="radio-inline" for="Gender-1">
+                  <input type="radio" name="gender" id="gender-1" value="1"> Female </label>
+                <label class="radio-inline" for="gender-2">
+                  <input type="radio" name="gender" id="gender-2" value="2">Other</label>
+              </div>
+            </div>
+
+            <!-- Dietary Preference -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="dietary">Dietary Preference</label>
+              <div class="col-md-4">
+                <label class="radio-inline" for="dietary-0">
+                  <input type="radio" name="dietary" id="dietary-0" value="0" checked="checked">Vegetarian</label>
+                <label class="radio-inline" for="dietary-1">
+                  <input type="radio" name="dietary" id="dietary-1" value="1">Non-Vegetarian</label>
+              </div>
+            </div>
+
+            <!-- Drinking Habit -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="drinking">Drinking Habit</label>
+              <div class="col-md-4">
+                <label class="radio-inline" for="drinking-0">
+                  <input type="radio" name="drinking" id="drinking-0" value="0" checked="checked">Alcoholic</label>
+                <label class="radio-inline" for="drinking-1">
+                  <input type="radio" name="drinking" id="drinking-1" value="1">Non-Alcoholic</label>
+              </div>
+            </div>
+
+            <!-- Smoking Habit -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="drinking">Smoking Habit</label>
+              <div class="col-md-4">
+                <label class="radio-inline" for="smoking-0">
+                  <input type="radio" name="smoking" id="smoking-0" value="0" checked="checked">Non-Smoker</label>
+                <label class="radio-inline" for="smoking-1">
+                  <input type="radio" name="smoking" id="smoking-1" value="1">Smoker</label>
+              </div>
+            </div>
+
+            <!-- Room Sharing -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="room">Share a Room</label>
+              <div class="col-md-4">
+                <label class="radio-inline" for="room-0">
+                  <input type="radio" name="room" id="room-0" value="0" checked="checked">Yes</label>
+                <label class="radio-inline" for="room-1">
+                  <input type="radio" name="room" id="room-1" value="1">No</label>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group">
+              <label class="col-md-4 control-label col-xs-12" for="Location">Location</label>
+              <div class="col-md-4">
+                <select class="form-control form-control-lg">
+                  <option>Avery Close</option>
+                  <option>Colonial Arms</option>
+                  <option>Champions Court</option>
+                  <option>The College Inn</option>
+                  <option>Centennial Ridge</option>
+                  <option>Gorman Crossing</option>
+                  <option>Gorman Place</option>
+                  <option>Kings Court</option>
+                  <option>Kensington Park</option>
+                  <option>Mission Valley Garden</option>
+                  <option>Pine Knoll</option>
+                  <option>Parkwood Village</option>
+                  <option>University Commons</option>
+                  <option>Western Manor</option>
+                  <option>Wolf Ridge</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Rate input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="Rate">Budget</label>
+              <div class="col-md-2">
+                  <input id="min_budget" name="min_budget" type="number" placeholder="Minimum Budget" class="form-control input-md">
+              </div>
+              <div class="col-md-2">
+                <input id="max_budget" name="max_budget" type="number" placeholder="Maximum Budget" class="form-control input-md">
+              </div>
+              </div>
+
+            <!--Move-In Date -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="move_in_date">Move-In Date</label>
+              <div class="col-md-4">
+                <input class="form-control" id="move_in_date" name="move_in_date" placeholder="MM/DD/YYY" type="text"/>
+              </div>
+            </div>
+
+            <!--  Move-Out Date -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="move_out_date">Move-Out Date</label>
+              <div class="col-md-4">
+                <input class="form-control" id="move_out_date" name="move_out_date" placeholder="MM/DD/YYY" type="text"/>
+              </div>
+            </div>
+
+            <!-- Pet Friendly -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="pet">Are you pet friendly</label>
+              <div class="col-md-4">
+                <label class="radio-inline" for="pet-0">
+                  <input type="radio" name="pet" id="pet-0" value="0" checked="checked">Yes</label>
+                <label class="radio-inline" for="pet-1">
+                  <input type="radio" name="pet" id="pet-1" value="1">No</label>
+              </div>
+            </div>
+
+            <!-- Visitors -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="visitors">Do you mind having visitors</label>
+              <div class="col-md-4">
+                <label class="radio-inline" for="visitors-0">
+                  <input type="radio" name="visitors" id="visitors-0" value="0" checked="checked">Yes</label>
+                <label class="radio-inline" for="visitors-1">
+                  <input type="radio" name="visitors" id="visitors-1" value="1">No</label>
+              </div>
+            </div>
+
+            <!-- Profession -->
+            <div class="form-group">
+              <label class="col-md-4 control-label col-xs-12" for="Profession">Profession</label>
+              <div class="col-md-4">
+                <select class="form-control form-control-lg">
+                  <option>Student</option>
+                  <option>IT</option>
+                  <option>Entrepreneur</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="Summary">Summary</label>
+              <div class="col-md-4">
+                <textarea class="form-control" rows="10" id="Summary" name="Summary">Summary about yourself</textarea>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label class="col-md-4 control-label"></label>
+              <div class="col-md-4">
+                <button type ="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</button>
+                <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
+
+              </div>
+            </div>
+
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- GOOGLE INFORMATION -->
+      <div class="col-sm-6">
+        <div class="well">
+          <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google+</h3>
+
+          <% if (user.google.token) { %>
+            <p>
+              <strong>id</strong>:
+              <%= user.google.id %><br>
+                <strong>token</strong>:
+                <%= user.google.token %><br>
+                  <strong>email</strong>:
+                  <%= user.google.email %><br>
+                    <strong>name</strong>:
+                    <%= user.google.name %>
+            </p>
+
+            <a href="/unlink/google" class="btn btn-danger">Unlink</a>
+            <% } else { %>
+              <a href="/connect/google" class="btn btn-danger">Connect Google</a>
+              <% } %>
+
         </div>
+      </div>
     </div>
+  </div>
 
-
-</div>
-</body>
-</html>
+<script>
+  $(document).ready(function(){
+        var move_in_date_input=$('input[name="move_in_date"]'); //our move in  date input has the name "move in date"
+        var move_out_date_input=$('input[name="move_out_date"]'); //our move out  date input has the name "move out date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        var options={
+          format: 'mm/dd/yyyy',
+          container: container,
+          todayHighlight: true,
+          autoclose: true,
+        };
+        move_in_date_input.datepicker(options);
+        move_out_date_input.datepicker(options);
+      })
+</script>
+<% include ./partials/footer %>
