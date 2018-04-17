@@ -19,10 +19,23 @@ module.exports = function(app, passport) {
         });
     });
 
-    // DASHBOARD SECTION =========================
+    // DASHBOARD SECTION with chatbox =========================
     app.get('/dashboard', isLoggedIn, function(req, res) {
+      const payload = {
+        "user_id": req.user.google.id,
+        "nickname": req.user.google.name,
+        "profile_url": ""
+      };
+      // Create a new user entry in the sendbird database
+      sb.users.create(payload).then(function (response, err) {
+          if (err) {
+            throw err;
+          }
+          console.log('User Added Successfully');
+      });
         res.render('dashboard.ejs', {
-            user : req.user
+          app_Id : process.env.SendBird_App_Id,
+          user: req.user
         });
     });
 
@@ -61,28 +74,6 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
-    // Chatbox
-    app.get('/chat', isLoggedIn, function(req, res) {
-    const payload = {
-      "user_id": req.user.google.id,
-      "nickname": req.user.google.name,
-      "profile_url": ""
-    };
-    // Create a new user entry in the sendbird database
-    sb.users.create(payload).then(function (response, err) {
-        if (err) {
-          throw err;
-        }
-        console.log('User Added Successfully');
-    });
-      res.render('chat.ejs', {
-        app_Id : process.env.SendBird_App_Id,
-        user: req.user
-      });
-    });
-    // app.get('/chat', function(req, res) {
-    //   res.render('index2.ejs');
-    // });
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
