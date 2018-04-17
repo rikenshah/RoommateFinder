@@ -28,69 +28,51 @@
             </div>
         </div> -->
 
-      <!-- FACEBOOK INFORMATION -->
-      <!-- <div class="col-sm-6">
-            <div class="well">
-                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
-
-                <!-- check if the user has this token (is the user authenticated with this social account) -->
-      <!-- <% if (user.facebook.token) { %>
-                    <p>
-                        <strong>id</strong>: <%= user.facebook.id %><br>
-                        <strong>token</strong>: <%= user.facebook.token %><br>
-                        <strong>email</strong>: <%= user.facebook.email %><br>
-                        <strong>name</strong>: <%= user.facebook.name %><br>
-                    </p>
-
-                    <a href="/unlink/facebook" class="btn btn-primary">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/facebook" class="btn btn-primary">Connect Facebook</a>
-                <% } %>
-
-            </div>
-        </div> -->
     </div>
     <div class="row">
 
       <div>
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post" role="form" action="/handle_profile">
           <fieldset>
             <!-- Name input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="Name (Full name)">Name (Full name)</label>
+              <label class="col-md-4 control-label" for="name">Name (Full name)</label>
               <div class="col-md-4">
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-user"></i>
                   </div>
-                  <input id="Name (Full name)" name="Name (Full name)" type="text" placeholder="Name (Full name)" class="form-control input-md">
+                  <!-- <?= if profile> -->
+                  <!-- <input id="name" name="name" type="text" value=<> placeholder="Name" class="form-control input-md"> -->
+                  <!-- else -->
+                  <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
                 </div>
               </div>
             </div>
 
             <!-- Age input-->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="Age">Age</label>
+              <label class="col-md-4 control-label" for="age">Age</label>
               <div class="col-md-4">
                 <div class="input-group">
                   <div class="input-group-addon">
                     <i class="fa fa-birthday-cake"></i>
                   </div>
-                  <input id="Age" name="Age" type="number" placeholder="Age" class="form-control input-md">
+                  <input id="age" name="age" type="number" class="form-control input-md">
                 </div>
               </div>
             </div>
 
             <!-- Gender -->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="Gender">Gender</label>
+              <label class="col-md-4 control-label" for="gender">Gender</label>
               <div class="col-md-4">
-                <label class="radio-inline" for="Gender-0">
-                  <input type="radio" name="Gender" id="Gender-0" value="1" checked="checked">Male </label>
+                <label class="radio-inline" for="gender-0">
+                  <input type="radio" name="gender" id="gender-0" value="0" checked="checked">Male </label>
                 <label class="radio-inline" for="Gender-1">
-                  <input type="radio" name="Gender" id="Gender-1" value="2"> Female </label>
-                <label class="radio-inline" for="Gender-2">
-                  <input type="radio" name="Gender" id="Gender-2" value="3">Other</label>
+                  <input type="radio" name="gender" id="gender-1" value="1"> Female </label>
+                <label class="radio-inline" for="gender-2">
+                  <input type="radio" name="gender" id="gender-2" value="2">Other</label>
               </div>
             </div>
 
@@ -166,19 +148,28 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="Rate">Budget</label>
               <div class="col-md-2">
-                  <input id="Min" name="Min" type="number" placeholder="Minimum Budget" class="form-control input-md">
+                  <input id="min_budget" name="min_budget" type="number" placeholder="Minimum Budget" class="form-control input-md">
               </div>
               <div class="col-md-2">
-                <input id="Max" name="Max" type="number" placeholder="Maximum Budget" class="form-control input-md">
+                <input id="max_budget" name="max_budget" type="number" placeholder="Maximum Budget" class="form-control input-md">
               </div>
               </div>
 
-            <!-- Dates -->
-            <div class="form-group"> <!-- Date input -->
-              <label class="control-label" for="date">Date</label>
-              <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+            <!--Move-In Date -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="move_in_date">Move-In Date</label>
+              <div class="col-md-4">
+                <input class="form-control" id="move_in_date" name="move_in_date" placeholder="MM/DD/YYY" type="text"/>
+              </div>
             </div>
 
+            <!--  Move-Out Date -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="move_out_date">Move-Out Date</label>
+              <div class="col-md-4">
+                <input class="form-control" id="move_out_date" name="move_out_date" placeholder="MM/DD/YYY" type="text"/>
+              </div>
+            </div>
 
             <!-- Pet Friendly -->
             <div class="form-group">
@@ -227,7 +218,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label"></label>
               <div class="col-md-4">
-                <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</a>
+                <button type ="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</button>
                 <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
 
               </div>
@@ -266,7 +257,8 @@
 
 <script>
   $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
+        var move_in_date_input=$('input[name="move_in_date"]'); //our move in  date input has the name "move in date"
+        var move_out_date_input=$('input[name="move_out_date"]'); //our move out  date input has the name "move out date"
         var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
         var options={
           format: 'mm/dd/yyyy',
@@ -274,7 +266,8 @@
           todayHighlight: true,
           autoclose: true,
         };
-        date_input.datepicker(options);
+        move_in_date_input.datepicker(options);
+        move_out_date_input.datepicker(options);
       })
 </script>
 <% include ./partials/footer %>
