@@ -36,11 +36,8 @@
     "passport-google-oauth": "~1.0.0",
     "passport-local": "~1.0.0",
     "passport-twitter": "~1.0.4",
-<<<<<<< HEAD
     "sendbird": "^3.0.57",
-    "sendbird-nodejs": "^1.0.0"
-=======
+    "sendbird-nodejs": "^1.0.0",
     "underscore": "^1.8.3"
->>>>>>> c0c0ec6c8c65813c70d62757851cefdb23dd0094
   }
 }
