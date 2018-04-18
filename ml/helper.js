@@ -105,12 +105,11 @@ function profile_array(callback)
 	var res;
 	profile.fetch_users(function(res) 
 	{
-		console.log("Hello");
-		console.log(res);
+		// console.log(res);
 		let vectors = new Array();
 		let user_id_list = new Array();
-		for (let i = 2 ; i < res.length ; i++) {
-			user_id_list[i] = [res[i]['google']['id']];
+		for (let i = 0 ; i < res.length ; i++) {
+			user_id_list[i] = res[i]['google']['id'];
   			vectors[i] = [ (res[i]['age'] -18)/82 , res[i]['gender'], res[i]['dietary'], 
   				res[i]['drinking'], res[i]['smoking'], res[i]['room'], 
   				res[i]['max_budget']-res[i]['min_budget'], res[i]['pet'],res[i]['visitors'],
@@ -118,40 +117,44 @@ function profile_array(callback)
   				res[i]['neuroticism'], res[i]['agreeableness'],
   				res[i]['extraversion']];
 		}
+		// console.log(vectors, user_id_list);
+	
 		callback(vectors, user_id_list);
 	});
 
 }
 
-function kmeans_helper(k_num)
+function kmeans_helper(k_num, callback)
 {
+	let clusters = new Array();
 	profile_array(function(vectors, user_id_list){
-		console.log(vectors, user_id_list);
+		// console.log(vectors, user_id_list);
 
 		k_means.clusterize(vectors, {k: k_num}, (err,res) => {
  		 	if (err) console.error(err);
-  			// else console.log(res);
-  			let clusters = new Array();
+  			// console.log(res, user_id_list);
+  			
   			for(var i = 0; i<res.length; i++)
   			{
-  				console.log(res[i]['centroid']);
+  				// console.log(res[i]['centroid']);
   				let user_ids = new Array();
   				for(var j =0; j< res[i]['clusterInd'].length; j++)
   				{
   					// console.log(user_id_list[res[i]['clusterInd'][j]]);
-  					user_ids.push(user_id_list[res[i]['clusterInd'][j]][0]);
+  					user_ids.push(user_id_list[res[i]['clusterInd'][j]]);
   				}
-  				console.log(user_ids);
+  				// console.log(user_ids);
   				var cluster_json = 
   				{
   					"cluster_number" : i,
   					"centroid" : res[i]['centroid'],
   					"user_list" : user_ids
   				}
-  				console.log(cluster_json);
+  				// console.log(cluster_json);
   				clusters.push(cluster_json);
   			}
-  			console.log(clusters);
+  			// console.log(clusters);
+  			callback(clusters);
 		});
 
 		// console.log(k_num);
@@ -168,6 +171,7 @@ function kmeans_helper(k_num)
 		// 	console.log(cluster_points);
 		// })
 	});
+
 }
 
 function fetching_clusters(callback)
@@ -195,19 +199,21 @@ function list_user(input_arr, res, help, n, callback)
 			var check_list = res[i]['user_list'];
 		}
 	}
+	// console.log(check_list);
 	profile_array(function(vectors, user_id_list)
 	{
 		var temp_array_dist = new Array();
-		// console.log(vectors, user_id_list.length);
-		// console.log(check_list.length);
+		// console.log(vectors, user_id_list);
+		// console.log(check_list);
 		for(var j = 0; j< user_id_list.length; j++)
 		{
 			for(var k =0; k< check_list.length; k++)
 			{
+				// console.log(user_id_list[j], check_list[k]);
 				if(user_id_list[j] == check_list[k])
-				{
+				{	
+					// console.log("Yes")
 					// console.log(user_id_list[j][0], check_list[k]);
-					// console.log(input_arr, vectors[j]);
 					var temp_dist = euclidianDistance(input_arr, vectors[j]);
 					temp_array_dist.push([check_list[k], temp_dist]);
 				}
@@ -221,13 +227,13 @@ function list_user(input_arr, res, help, n, callback)
 
 function knn_helper(input_arr, n, callback)
 {
-	// console.log("Hello");
+
 	fetching_clusters(function(vectors, res){
 		// console.log("IN Helper");
-		// console.log(vectors);
+		// console.log(vectors ,res);
 		knn.find_knn_cluster(input_arr, vectors, function(help)
 		{
-			console.log(help);
+			// console.log(help);
 			for(var i = 0; i <res.length; i++)
 			{
 				// console.log(res[i]);
@@ -241,6 +247,7 @@ function knn_helper(input_arr, n, callback)
 					}
 				}
 			}
+			// console.log(input_arr, res, help, n);
 			list_user(input_arr, res, help, n, function(final_list)
 			{
 
@@ -255,7 +262,7 @@ function knn_helper(input_arr, n, callback)
 				{
 					knn_user_ids.push(final_list[j][0]);
 				}
-				console.log(knn_user_ids);
+				// console.log(knn_user_ids);
 				callback(knn_user_ids);
 			});
 
@@ -265,11 +272,27 @@ function knn_helper(input_arr, n, callback)
 
 function main()
 {
-	kmeans_helper(7);
+	kmeans_helper(1, function(clusters){
+		console.log(clusters);
+	});
 
-	// knn_helper([0.1,0.1,0.1,0.1,0.1,0.1,10,0.1,0.1,0.1,0.1,0.1], 6, function(temp)
-	// {
-	// 		console.log(temp);
-	// });
+// 	knn_helper([ 0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   1000,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1 ]
+// , 6, function(temp)
+// 	{
+// 			console.log(temp);
+// 	});
 
 }

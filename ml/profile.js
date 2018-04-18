@@ -78,7 +78,7 @@ var cluster_schema = new Schema(
 	{
     cluster_number: 'number',
     centroid: ['number'],
-    user_list: ['number']
+    user_list: ['string']
 	}, 
 	{
   	collection: 'cluster'
