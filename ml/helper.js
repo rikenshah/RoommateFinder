@@ -270,12 +270,41 @@ function knn_helper(input_arr, n, callback)
 	});
 }
 
+function basic_knn(input_arr, n, callback)
+{
+	profile_array(function(vectors, user_id_list){
+		// console.log(vectors, user_id_list);
+
+		if(vectors.length < n)
+			n = vectors.length;
+		
+		var temp_array_dist = new Array();
+		for(var i = 0; i < vectors.length; i++)
+		{
+
+			var temp_dist = euclidianDistance(input_arr, vectors[i]);
+			// console.log(input_arr, vectors[i], temp_dist);
+			temp_array_dist.push([user_id_list[i], temp_dist]);
+		}
+
+		// console.log(temp_array_dist);
+		temp_array_dist.sort(compareSecondColumn);
+		var final_list = new Array();
+		for(var j = 0; j<n; j++)
+		{
+			final_list.push(temp_array_dist[j][0]);
+		}
+		callback(final_list);
+	});
+}
+
 function main()
 {
-	kmeans_helper(1, function(clusters){
-		console.log(clusters);
-	});
-
+	var start = new Date();
+	// kmeans_helper(1, function(clusters){
+	// 	console.log(clusters);
+	// });
+	
 // 	knn_helper([ 0.1,
 //   0.1,
 //   0.1,
@@ -293,6 +322,29 @@ function main()
 // , 6, function(temp)
 // 	{
 // 			console.log(temp);
+// 			var end = new Date() - start;
+// console.info("Execution time: %dms", end);
 // 	});
+
+	basic_knn([ 0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  1000,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1 ]
+, 6, function(temp)
+	{
+			console.log(temp);
+			var end = new Date() - start;
+console.info("Execution time: %dms", end);
+	});
 
 }
