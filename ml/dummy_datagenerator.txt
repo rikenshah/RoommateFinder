@@ -1,0 +1,34 @@
+[
+  '{{repeat(1000)}}',
+  {
+    "google": {
+        "email": '{{firstName()}}{{surname()}}@ncsu.edu',
+        "name": '{{firstName()}} {{surname()}}',
+        "token": '{{guid()}}',
+        "id": '{{objectId()}}'
+    },
+    "__v": 0,
+    "age": '{{integer(20, 40)}}',
+    "gender": '{{integer(0, 1)}}',
+    "dietary": '{{integer(0, 1)}}',
+    "drinking": '{{integer(0, 1)}}',
+    "smoking": '{{integer(0, 1)}}',
+    "room": '{{integer(0, 1)}}',
+    "min_budget": '{{integer(200, 400)}}',
+    "max_budget": '{{integer(400, 1000)}}',
+    "move_in_date": {
+        "$date": '{{date(new Date(2018, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}.000Z'
+    },
+    "move_out_date": {
+        "$date": '{{date(new Date(2018, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}.000Z'
+    },
+    "pet": '{{integer(0, 1)}}',
+    "visitors": '{{integer(0, 1)}}',
+    "Summary": '{{lorem(1, "paragraphs")}}',
+    "openness": '{{floating(0, 1)}}',
+    "conscientiousness": '{{floating(0, 1)}}',
+    "neuroticism": '{{floating(0, 1)}}',
+    "agreeableness": '{{floating(0, 1)}}',
+    "extraversion": '{{floating(0, 1)}}'
+  }
+]
