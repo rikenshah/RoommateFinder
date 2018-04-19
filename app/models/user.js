@@ -69,4 +69,3 @@ function findOne(name){
 module.exports = mongoose.model('User', userSchema);
 
 //module.exports = {findOne};
-

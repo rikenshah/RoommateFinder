@@ -3,7 +3,6 @@
 
     <div class="page-header text-center">
       <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-      <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
     <div class="row">
@@ -42,10 +41,7 @@
                   <div class="input-group-addon">
                     <i class="fa fa-user"></i>
                   </div>
-                  <!-- <?= if profile> -->
-                  <!-- <input id="name" name="name" type="text" value=<> placeholder="Name" class="form-control input-md"> -->
-                  <!-- else -->
-                  <input id="name" name="name" type="text" placeholder="Name" class="form-control input-md">
+                    <input id="name" name="name" type="text" value="<%= user.google.name %>" placeholder="Name" class="form-control input-md">
                 </div>
               </div>
             </div>
@@ -58,7 +54,11 @@
                   <div class="input-group-addon">
                     <i class="fa fa-birthday-cake"></i>
                   </div>
-                  <input id="age" name="age" type="number" class="form-control input-md">
+                  <%if (profile == false) { %>
+                    <input id="age" name="age" type="number" class="form-control input-md">
+                  <% } else { %>
+                    <input id="age" name="age" type="number" value= "<%= user.age%>" class="form-control input-md">
+                  <% } %>
                 </div>
               </div>
             </div>
@@ -67,12 +67,36 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="gender">Gender</label>
               <div class="col-md-4">
-                <label class="radio-inline" for="gender-0">
-                  <input type="radio" name="gender" id="gender-0" value="0" checked="checked">Male </label>
-                <label class="radio-inline" for="Gender-1">
-                  <input type="radio" name="gender" id="gender-1" value="1"> Female </label>
-                <label class="radio-inline" for="gender-2">
-                  <input type="radio" name="gender" id="gender-2" value="2">Other</label>
+                <%if (profile == false) { %>
+                  <label class="radio-inline" for="gender-0">
+                    <input type="radio" name="gender" id="gender-0" value="0">Male </label>
+                  <label class="radio-inline" for="Gender-1">
+                    <input type="radio" name="gender" id="gender-1" value="1"> Female </label>
+                  <label class="radio-inline" for="gender-2">
+                    <input type="radio" name="gender" id="gender-2" value="2">Other</label>
+                <% } else { %>
+                    <% if (user.gender == 0){ %>
+                      <label class="radio-inline" for="gender-0">
+                        <input type="radio" name="gender" id="gender-0" value="0" checked="checked">Male </label>
+                      <label class="radio-inline" for="Gender-1">
+                        <input type="radio" name="gender" id="gender-1" value="1"> Female </label>
+                      <label class="radio-inline" for="gender-2">
+                        <input type="radio" name="gender" id="gender-2" value="2">Other</label>
+                    <% } else if (user.gender == 1){%>
+                      <label class="radio-inline" for="gender-0">
+                        <input type="radio" name="gender" id="gender-0" value="0">Male </label>
+                      <label class="radio-inline" for="Gender-1">
+                        <input type="radio" name="gender" id="gender-1" value="1" checked="checked"> Female </label>
+                      <label class="radio-inline" for="gender-2">
+                        <input type="radio" name="gender" id="gender-2" value="2">Other</label>
+                    <% } else {%>
+                      <label class="radio-inline" for="gender-0">
+                        <input type="radio" name="gender" id="gender-0" value="0">Male </label>
+                      <label class="radio-inline" for="Gender-1">
+                        <input type="radio" name="gender" id="gender-1" value="1"> Female </label>
+                      <label class="radio-inline" for="gender-2">
+                        <input type="radio" name="gender" id="gender-2" value="2" checked="checked">Other</label>
+                <% } } %>
               </div>
             </div>
 
@@ -80,10 +104,23 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="dietary">Dietary Preference</label>
               <div class="col-md-4">
-                <label class="radio-inline" for="dietary-0">
-                  <input type="radio" name="dietary" id="dietary-0" value="0" checked="checked">Vegetarian</label>
-                <label class="radio-inline" for="dietary-1">
-                  <input type="radio" name="dietary" id="dietary-1" value="1">Non-Vegetarian</label>
+                <%if (profile == false) { %>
+                  <label class="radio-inline" for="dietary-0">
+                    <input type="radio" name="dietary" id="dietary-0" value="0">Vegetarian</label>
+                  <label class="radio-inline" for="dietary-1">
+                      <input type="radio" name="dietary" id="dietary-1" value="1">Non-Vegetarian</label>
+                <% } else { %>
+                    <% if (user.dietary == 0){ %>
+                      <label class="radio-inline" for="dietary-0">
+                        <input type="radio" name="dietary" id="dietary-0" value="0" checked="checked">Vegetarian</label>
+                      <label class="radio-inline" for="dietary-1">
+                          <input type="radio" name="dietary" id="dietary-1" value="1">Non-Vegetarian</label>
+                    <% } else {%>
+                      <label class="radio-inline" for="dietary-0">
+                        <input type="radio" name="dietary" id="dietary-0" value="0">Vegetarian</label>
+                      <label class="radio-inline" for="dietary-1">
+                          <input type="radio" name="dietary" id="dietary-1" value="1" checked="checked">Non-Vegetarian</label>
+                <% } } %>
               </div>
             </div>
 
@@ -91,21 +128,47 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="drinking">Drinking Habit</label>
               <div class="col-md-4">
-                <label class="radio-inline" for="drinking-0">
-                  <input type="radio" name="drinking" id="drinking-0" value="0" checked="checked">Alcoholic</label>
-                <label class="radio-inline" for="drinking-1">
-                  <input type="radio" name="drinking" id="drinking-1" value="1">Non-Alcoholic</label>
+                <%if (profile == false) { %>
+                  <label class="radio-inline" for="drinking-0">
+                    <input type="radio" name="drinking" id="drinking-0" value="0">Alcoholic</label>
+                  <label class="radio-inline" for="drinking-1">
+                    <input type="radio" name="drinking" id="drinking-1" value="1">Non-Alcoholic</label>
+                <% } else { %>
+                    <% if (user.drinking == 0){ %>
+                      <label class="radio-inline" for="drinking-0">
+                        <input type="radio" name="drinking" id="drinking-0" value="0" checked="checked">Alcoholic</label>
+                      <label class="radio-inline" for="drinking-1">
+                        <input type="radio" name="drinking" id="drinking-1" value="1">Non-Alcoholic</label>
+                    <% } else {%>
+                      <label class="radio-inline" for="drinking-0">
+                        <input type="radio" name="drinking" id="drinking-0" value="0">Alcoholic</label>
+                      <label class="radio-inline" for="drinking-1">
+                        <input type="radio" name="drinking" id="drinking-1" value="1" checked="checked">Non-Alcoholic</label>
+                <% } } %>
               </div>
             </div>
 
             <!-- Smoking Habit -->
             <div class="form-group">
-              <label class="col-md-4 control-label" for="drinking">Smoking Habit</label>
+              <label class="col-md-4 control-label" for="smoking">Smoking Habit</label>
               <div class="col-md-4">
-                <label class="radio-inline" for="smoking-0">
-                  <input type="radio" name="smoking" id="smoking-0" value="0" checked="checked">Non-Smoker</label>
-                <label class="radio-inline" for="smoking-1">
-                  <input type="radio" name="smoking" id="smoking-1" value="1">Smoker</label>
+                <%if (profile == false) { %>
+                  <label class="radio-inline" for="smoking-0">
+                    <input type="radio" name="smoking" id="smoking-0" value="0">Non-Smoker</label>
+                  <label class="radio-inline" for="smoking-1">
+                    <input type="radio" name="smoking" id="smoking-1" value="1">Smoker</label>
+                <% } else { %>
+                    <% if (user.smoking == 0){ %>
+                      <label class="radio-inline" for="smoking-0">
+                        <input type="radio" name="smoking" id="smoking-0" value="0" checked="checked">Non-Smoker</label>
+                      <label class="radio-inline" for="smoking-1">
+                        <input type="radio" name="smoking" id="smoking-1" value="1">Smoker</label>
+                    <% } else {%>
+                      <label class="radio-inline" for="smoking-0">
+                        <input type="radio" name="smoking" id="smoking-0" value="0">Non-Smoker</label>
+                      <label class="radio-inline" for="smoking-1">
+                        <input type="radio" name="smoking" id="smoking-1" value="1" checked="checked">Smoker</label>
+                <% } } %>
               </div>
             </div>
 
@@ -113,10 +176,71 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="room">Share a Room</label>
               <div class="col-md-4">
-                <label class="radio-inline" for="room-0">
-                  <input type="radio" name="room" id="room-0" value="0" checked="checked">Yes</label>
-                <label class="radio-inline" for="room-1">
-                  <input type="radio" name="room" id="room-1" value="1">No</label>
+                <%if (profile == false) { %>
+                  <label class="radio-inline" for="room-0">
+                    <input type="radio" name="room" id="room-0" value="0">Yes</label>
+                  <label class="radio-inline" for="room-1">
+                    <input type="radio" name="room" id="room-1" value="1">No</label>
+                <% } else { %>
+                    <% if (user.room == 0){ %>
+                      <label class="radio-inline" for="room-0">
+                        <input type="radio" name="room" id="room-0" value="0" checked="checked">Yes</label>
+                      <label class="radio-inline" for="room-1">
+                        <input type="radio" name="room" id="room-1" value="1">No</label>
+                    <% } else {%>
+                      <label class="radio-inline" for="room-0">
+                        <input type="radio" name="room" id="room-0" value="0">Yes</label>
+                      <label class="radio-inline" for="room-1">
+                        <input type="radio" name="room" id="room-1" value="1" checked="checked">No</label>
+                <% } } %>
+              </div>
+            </div>
+
+            <!-- Visitors -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="visitors">Do you mind having visitors</label>
+              <div class="col-md-4">
+                <%if (profile == false) { %>
+                  <label class="radio-inline" for="visitors-0">
+                    <input type="radio" name="visitors" id="visitors-0" value="0" checked="checked">Yes</label>
+                  <label class="radio-inline" for="visitors-1">
+                    <input type="radio" name="visitors" id="visitors-1" value="1">No</label>
+                <% } else { %>
+                    <% if (user.visitors == 0){ %>
+                      <label class="radio-inline" for="visitors-0">
+                        <input type="radio" name="visitors" id="visitors-0" value="0">Yes</label>
+                      <label class="radio-inline" for="visitors-1">
+                        <input type="radio" name="visitors" id="visitors-1" value="1">No</label>
+                    <% } else {%>
+                      <label class="radio-inline" for="visitors-0">
+                        <input type="radio" name="visitors" id="visitors-0" value="0">Yes</label>
+                      <label class="radio-inline" for="visitors-1">
+                        <input type="radio" name="visitors" id="visitors-1" value="1" checked="checked">No</label>
+                <% } } %>
+              </div>
+            </div>
+
+            <!-- Pet Friendly -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="pet">Are you pet friendly</label>
+              <div class="col-md-4">
+                <%if (profile == false) { %>
+                  <label class="radio-inline" for="pet-0">
+                    <input type="radio" name="pet" id="pet-0" value="0">Yes</label>
+                  <label class="radio-inline" for="pet-1">
+                    <input type="radio" name="pet" id="pet-1" value="1">No</label>
+                <% } else { %>
+                    <% if (user.pet == 0){ %>
+                      <label class="radio-inline" for="pet-0">
+                        <input type="radio" name="pet" id="pet-0" value="0" checked="checked">Yes</label>
+                      <label class="radio-inline" for="pet-1">
+                        <input type="radio" name="pet" id="pet-1" value="1">No</label>
+                    <% } else {%>
+                      <label class="radio-inline" for="pet-0">
+                        <input type="radio" name="pet" id="pet-0" value="0">Yes</label>
+                      <label class="radio-inline" for="pet-1">
+                        <input type="radio" name="pet" id="pet-1" value="1" checked="checked">No</label>
+                <% } } %>
               </div>
             </div>
 
@@ -148,18 +272,30 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="Rate">Budget</label>
               <div class="col-md-2">
+                <%if (profile == false) { %>
                   <input id="min_budget" name="min_budget" type="number" placeholder="Minimum Budget" class="form-control input-md">
+                <% } else { %>
+                  <input id="min_budget" name="min_budget" type="number" value= "<%= user.min_budget%>" placeholder="Minimum Budget" class="form-control input-md">
+                <% } %>
               </div>
               <div class="col-md-2">
-                <input id="max_budget" name="max_budget" type="number" placeholder="Maximum Budget" class="form-control input-md">
+                <%if (profile == false) { %>
+                  <input id="max_budget" name="max_budget" type="number" placeholder="Maximum Budget" class="form-control input-md">
+                <% } else { %>
+                  <input id="max_budget" name="max_budget" type="number" value= "<%= user.max_budget%>" placeholder="Maximum Budget" class="form-control input-md">
+                <% } %>
               </div>
-              </div>
+            </div>
 
             <!--Move-In Date -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="move_in_date">Move-In Date</label>
               <div class="col-md-4">
-                <input class="form-control" id="move_in_date" name="move_in_date" placeholder="MM/DD/YYY" type="text"/>
+                <%if (profile == false) { %>
+                  <input class="form-control" id="move_in_date" name="move_in_date" placeholder="MM/DD/YYY" type="text"/>
+                <% } else { %>
+                  <input class="form-control" id="move_in_date" name="move_in_date" value= "<%= user.move_in_date.toDateString()%>" placeholder="MM/DD/YYY" type="text"/>
+                <% } %>
               </div>
             </div>
 
@@ -167,29 +303,11 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="move_out_date">Move-Out Date</label>
               <div class="col-md-4">
-                <input class="form-control" id="move_out_date" name="move_out_date" placeholder="MM/DD/YYY" type="text"/>
-              </div>
-            </div>
-
-            <!-- Pet Friendly -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="pet">Are you pet friendly</label>
-              <div class="col-md-4">
-                <label class="radio-inline" for="pet-0">
-                  <input type="radio" name="pet" id="pet-0" value="0" checked="checked">Yes</label>
-                <label class="radio-inline" for="pet-1">
-                  <input type="radio" name="pet" id="pet-1" value="1">No</label>
-              </div>
-            </div>
-
-            <!-- Visitors -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="visitors">Do you mind having visitors</label>
-              <div class="col-md-4">
-                <label class="radio-inline" for="visitors-0">
-                  <input type="radio" name="visitors" id="visitors-0" value="0" checked="checked">Yes</label>
-                <label class="radio-inline" for="visitors-1">
-                  <input type="radio" name="visitors" id="visitors-1" value="1">No</label>
+                <%if (profile == false) { %>
+                  <input class="form-control" id="move_out_date" name="move_out_date" placeholder="MM/DD/YYY" type="text"/>
+                <% } else { %>
+                  <input class="form-control" id="move_out_date" name="move_out_date" value= "<%= user.move_out_date.toDateString()%>" placeholder="MM/DD/YYY" type="text"/>
+                <% } %>
               </div>
             </div>
 
@@ -210,20 +328,28 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="Summary">Summary</label>
               <div class="col-md-4">
-                <textarea class="form-control" rows="10" id="Summary" name="Summary">Summary about yourself</textarea>
+                <%if (profile == false) { %>
+                  <textarea class="form-control" rows="10" id="Summary" placeholder="Summary about yourself" name="Summary"></textarea>
+                <% } else { %>
+                  <textarea class="form-control" rows="10" id="Summary" placeholder="Summary about yourself" name="Summary"><%= user.Summary %></textarea>
+                <% } %>
               </div>
             </div>
 
-
+            <!-- Submit and clear button -->
             <div class="form-group">
               <label class="col-md-4 control-label"></label>
               <div class="col-md-4">
-                <button type ="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</button>
-                <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
-
+                <%if (profile == false) { %>
+                  <button type ="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</button>
+                  <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
+                <% } else { %>
+                  <button type ="submit" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Submit</button>
+                  <a href="#" class="btn btn-danger" value=""><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
+                  <a href="/unlink/google" class="btn btn-danger">Unlink</a>
+                <% } %>
               </div>
             </div>
-
           </fieldset>
         </form>
       </div>

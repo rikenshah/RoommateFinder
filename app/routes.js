@@ -42,17 +42,24 @@ module.exports = function(app, passport) {
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-      // to find profile of req.user
-      // if null
+      console.log(req.user.Summary);
+      // Check whether a profile already exists or not
+      var profile_exists  = false;
+      if (req.user.gender == null) {
         res.render('profile.ejs', {
-            user : req.user
+            user : req.user,
+            profile: profile_exists
         });
-        // else
-        // res.render('profile.ejs', {
-        //     user : req.user,
-        //     profile: pro
-        // });
+      }
+      else {
+        profile_exists = true;
+        res.render('profile.ejs', {
+            user : req.user,
+            profile: profile_exists
+        });
+      }
     });
+
     //Search section ==============================
     app.get('/search', isLoggedIn, function(req, res) {
         res.render('search.ejs', {
