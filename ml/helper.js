@@ -300,6 +300,7 @@ function basic_knn(input_arr, n, callback)
 
 function main()
 {
+	console.log("Hello world");
 	var start = new Date();
 	// kmeans_helper(3, function(clusters){
 	// 	console.log(clusters);

@@ -1,6 +1,8 @@
+require('dotenv').config();
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://seprojuser:seprojuser123@ds117729.mlab.com:17729/roommatefinder', function() { /* dummy function */ })
+
+mongoose.connect(process.env.MONGO_CONNECTION_STRING, function() { /* dummy function */ })
   .then(() => {
     console.log('Connection to DB Successful');
   })
