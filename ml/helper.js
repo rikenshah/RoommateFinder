@@ -301,30 +301,30 @@ function basic_knn(input_arr, n, callback)
 function main()
 {
 	var start = new Date();
-	// kmeans_helper(1, function(clusters){
+	// kmeans_helper(3, function(clusters){
 	// 	console.log(clusters);
 	// });
 	
-// 	knn_helper([ 0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   1000,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1 ]
-// , 6, function(temp)
-// 	{
-// 			console.log(temp);
-// 			var end = new Date() - start;
-// console.info("Execution time: %dms", end);
-// 	});
+	knn_helper([ 0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  1000,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1 ]
+, 6, function(temp)
+	{
+			// console.log(temp);
+			var end = new Date() - start;
+console.info("Execution time of Kmeans KNN for 10 user profile: %dms", end);
+	});
 
 	basic_knn([ 0.1,
   0.1,
@@ -342,9 +342,9 @@ function main()
   0.1 ]
 , 6, function(temp)
 	{
-			console.log(temp);
+			// console.log(temp);
 			var end = new Date() - start;
-console.info("Execution time: %dms", end);
+console.info("Execution time of Basic KNN for 10 user profile: %dms", end);
 	});
 
 }
