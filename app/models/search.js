@@ -17,31 +17,37 @@ function getSearchResults(userSearchCriteria,callback){
    else if(roomSharing==1)
        roomSharing=0;
    else roomSharing=1;
+
    if(pet==2)
        pet=null;
    else if(pet==1)
        pet=0;
-   else roomSharing=1;
+   else pet=1;
+
    if(smoke==2)
        smoke=null;
    else if(smoke==1)
        smoke=0;
    else smoke=1;
+
    if(visitors==2)
        visitors=null;
    else if(visitors==1)
        visitors=0;
    else visitors=1;
+
    if(drink==2)
        drink=null;
-   else if(drink==1)
-       drink=0;
-   else drink=1;
+   //else if(drink==1)
+     //  drink=0;
+   //else drink=1;
+
    if(veg==2)
        veg=null;
    else if(veg==1)
        veg=0;
    else veg=1;
+
    if(livingPreference==2)
        livingPreference=null;
    else if(livingPreference==1)
