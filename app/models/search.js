@@ -4,34 +4,71 @@ const user=require('./user.js');
 
 function getSearchResults(userSearchCriteria,callback){
     //console.log('inside are'+userSearchCriteria);
-   var roomSharing=userSearchCriteria.roomSharing;
-   var pet=userSearchCriteria.pet;
-   var smoke=userSearchCriteria.smoke;
-   var visitors=userSearchCriteria.visitors;
-   var drink=userSearchCriteria.drink;
-   var veg=userSearchCriteria.veg;
-   var livingPreference=userSearchCriteria.livingPreference;//gender
+   var roomSharing=userSearchCriteria.roomSharing-1;
+   var pet=userSearchCriteria.pet-1;
+   var smoke=userSearchCriteria.smoke-1;
+   var visitors=userSearchCriteria.visitors-1;
+   var drink=userSearchCriteria.drink-1;
+   var veg=userSearchCriteria.veg-1;
+   var livingPreference=userSearchCriteria.livingPreference-1;//gender
 
-   if(roomSharing==3)
+   if(roomSharing==2)
        roomSharing=null;
-   if(pet==3)
+   else if(roomSharing==1)
+       roomSharing=0;
+   else roomSharing=1;
+   if(pet==2)
        pet=null;
-   if(smoke==3)
+   else if(pet==1)
+       pet=0;
+   else roomSharing=1;
+   if(smoke==2)
        smoke=null;
-   if(visitors==3)
+   else if(smoke==1)
+       smoke=0;
+   else smoke=1;
+   if(visitors==2)
        visitors=null;
-   if(drink==3)
+   else if(visitors==1)
+       visitors=0;
+   else visitors=1;
+   if(drink==2)
        drink=null;
-   if(veg==3)
+   else if(drink==1)
+       drink=0;
+   else drink=1;
+   if(veg==2)
        veg=null;
-   if(livingPreference==3)
+   else if(veg==1)
+       veg=0;
+   else veg=1;
+   if(livingPreference==2)
        livingPreference=null;
+   else if(livingPreference==1)
+       livingPreference=0;
+   else livingPreference=1;
+    //{"room":{"$ne":null}{ $and : [ {'first_name' : { $ne:null }, {'first_name' :'value_A' }]}
+    user.find( { $or:[ {$and: [{'room':{"$ne":null}}, {'room':roomSharing}]},
+                {$and :[{'gender':{"$ne":null}},{'gender':livingPreference}]},
+                {$and:[{'smoking':{"$ne":null}},{'smoking':smoke}]},
+                {$and:[{'dietary':{"$ne":null}},{'dietary':veg}]},
+                {$and:[{'drinking':{"$ne":null}},{'drinking':drink}]},
+                {$and:[{'pet':{"$ne":null}},{'pet':pet}]},
+                {$and:[{'visitors':{"$ne":null}},{'visitors':visitors}]}
 
-    user.find( { $or:[ {'room':roomSharing}, {'gender':livingPreference}, {'smoking':smoke}, {'dietary':veg}, {'drinking':drink}, {'pet':pet}, {'visitors':visitors} ]},
+                 ]},
         function(err,users){
 
-            if(!err) console.log(users)//res.send(docs);
-            callback(users);
+            if(!err)
+                console.log(users)
+            //if no users are returned, in case of nothing being searched, return all users
+            if(users==null ||users.length==0) {
+                user.find({}, function(err, allusers) {
+                    callback(allusers);
+                })
+            }
+            else
+                callback(users);
         });
 
 

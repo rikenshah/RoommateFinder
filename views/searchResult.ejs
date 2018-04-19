@@ -8,7 +8,7 @@
 <h1>Here are the Search results</h1>
 <% for(let i = 0; i < searchResults.length; i++) { %>
 <article>
-    <p>Name:<%= searchResults[i].google.name %> Age:<%= searchResults[i].age %></p>
+    <p>Name:<%= searchResults[i].google.name %> Age:<%= searchResults[i].age %> Gender:<% if(searchResults[i].gender==0) {%> Female <%}else{ %> Male <% } %> </p>
 </article>
 <% } %>
 </body>
