@@ -1,3 +1,15 @@
 <% include ./partials/header %>
 
+
+<body>
+
+<h1>Search again!
+<a href="/search" class="btn btn-warning btn-lg">Search Roommates</a></h1>
+<h1>Here are the Search results</h1>
+<% for(let i = 0; i < searchResults.length; i++) { %>
+<article>
+    <p>Name:<%= searchResults[i].google.name %> Age:<%= searchResults[i].age %> Gender:<% if(searchResults[i].gender==0) {%> Female <%}else{ %> Male <% } %> </p>
+</article>
+<% } %>
+</body>
 <% include ./partials/footer %>

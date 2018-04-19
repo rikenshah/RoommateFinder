@@ -8,6 +8,21 @@
 		<br><br>
 		<a href="/recommend" class="btn btn-warning btn-lg">Get Recommendation</a>
 
+		<div id="sb_widget"></div>
 	</div>
 
+	<script src="/chat/SendBird.min.js"></script>
+	<script src="/chat/build/widget.SendBird.js"></script>
+	<script>
+	  //console.log(<% app_Id %>);
+	  var appId= "<%= app_Id %>";
+	  console.log(appId);
+	  var userId = "<%= user.google.id %>";
+	  console.log(userId);
+	  var nickname = "<%= user.google.name %>";
+	  console.log(nickname);
+	  sbWidget.startWithConnect(appId, userId, nickname).then(function() {
+	    console.log('Chat Started with user id: ');
+	  });
+	</script>
 <% include ./partials/footer %>

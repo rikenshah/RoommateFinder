@@ -3,6 +3,7 @@ require('dotenv').config();
 const SendBird = require('sendbird-nodejs');
 const sb = SendBird(process.env.SendBird_Api_Token);
 const user_profile = require('./controllers/user_profile');
+const getSearchResults=require('./models/search.js');
 
 module.exports = function(app, passport) {
 
@@ -19,37 +20,72 @@ module.exports = function(app, passport) {
         });
     });
 
-    // DASHBOARD SECTION =========================
+    // DASHBOARD SECTION with chatbox =========================
     app.get('/dashboard', isLoggedIn, function(req, res) {
+      const payload = {
+        "user_id": req.user.google.id,
+        "nickname": req.user.google.name,
+        "profile_url": ""
+      };
+      // Create a new user entry in the sendbird database
+      sb.users.create(payload).then(function (response, err) {
+          if (err) {
+            throw err;
+          }
+          console.log('User Added Successfully');
+      });
         res.render('dashboard.ejs', {
-            user : req.user
+          app_Id : process.env.SendBird_App_Id,
+          user: req.user
         });
     });
 
     // PROFILE SECTION =========================
     app.get('/profile', isLoggedIn, function(req, res) {
-      // to find profile of req.user
-      // if null
+      console.log(req.user.Summary);
+      // Check whether a profile already exists or not
+      var profile_exists  = false;
+      if (req.user.gender == null) {
         res.render('profile.ejs', {
-            user : req.user
+            user : req.user,
+            profile: profile_exists
         });
-        // else
-        // res.render('profile.ejs', {
-        //     user : req.user,
-        //     profile: pro
-        // });
+      }
+      else {
+        profile_exists = true;
+        res.render('profile.ejs', {
+            user : req.user,
+            profile: profile_exists
+        });
+      }
     });
-    //Search section
+
+    //Search section ==============================
     app.get('/search', isLoggedIn, function(req, res) {
         res.render('search.ejs', {
             user : req.user
         });
     });
+
     app.post('/searchResult', isLoggedIn, function(req, res) {
-        console.log(req.body.roomSharing)
-        res.render('searchResult.ejs', {
-            user : req.user
+
+        var userSearchCriteria={"roomSharing":req.body.roomSharing,
+            "pet":req.body.pet,
+            "smoke":req.body.smoke,
+            "visitors":req.body.visitors,
+            "drink":req.body.drink,
+            "veg":req.body.veg,
+            "livingPreference":req.body.livingPreference//gender preference
+
+        };
+        console.log('user search criteria is'+userSearchCriteria);
+        getSearchResults.getSearchResults(userSearchCriteria,function(searchResults){
+            console.log('searchresults are'+searchResults);
+            res.render('searchResult.ejs', {user : req.user, searchResults:searchResults });
         });
+
+
+        //res.render('searchResult.ejs', {user : req.user, searchResults:searchResults });
     });
 
     // Handle profile
@@ -61,28 +97,6 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
-    // Chatbox
-    app.get('/chat', isLoggedIn, function(req, res) {
-    const payload = {
-      "user_id": req.user.google.id,
-      "nickname": req.user.google.name,
-      "profile_url": ""
-    };
-    // Create a new user entry in the sendbird database
-    sb.users.create(payload).then(function (response, err) {
-        if (err) {
-          throw err;
-        }
-        console.log('User Added Successfully');
-    });
-      res.render('chat.ejs', {
-        app_Id : process.env.SendBird_App_Id,
-        user: req.user
-      });
-    });
-    // app.get('/chat', function(req, res) {
-    //   res.render('index2.ejs');
-    // });
 
 // =============================================================================
 // AUTHENTICATE (FIRST LOGIN) ==================================================
