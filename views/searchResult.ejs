@@ -2,10 +2,13 @@
 
 
 <body>
-<h1>searchResults</h1>
+
+<h1>Search again!
+<a href="/search" class="btn btn-warning btn-lg">Search Roommates</a></h1>
+<h1>Here are the Search results</h1>
 <% for(let i = 0; i < searchResults.length; i++) { %>
 <article>
-    <p>Name:<%= searchResults[i].google.name %> <br> Age:<%= searchResults[i].age %></p>
+    <p>Name:<%= searchResults[i].google.name %> Age:<%= searchResults[i].age %></p>
 </article>
 <% } %>
 </body>

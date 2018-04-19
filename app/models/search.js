@@ -3,7 +3,7 @@ var bcrypt   = require('bcrypt-nodejs');
 const user=require('./user.js');
 
 function getSearchResults(userSearchCriteria,callback){
-    console.log('inside are'+userSearchCriteria);
+    //console.log('inside are'+userSearchCriteria);
    var roomSharing=userSearchCriteria.roomSharing;
    var pet=userSearchCriteria.pet;
    var smoke=userSearchCriteria.smoke;
