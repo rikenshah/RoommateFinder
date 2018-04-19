@@ -3,6 +3,7 @@ require('dotenv').config();
 const SendBird = require('sendbird-nodejs');
 const sb = SendBird(process.env.SendBird_Api_Token);
 const user_profile = require('./controllers/user_profile');
+const getSearchResults=require('./models/search.js');
 
 module.exports = function(app, passport) {
 
@@ -52,17 +53,32 @@ module.exports = function(app, passport) {
         //     profile: pro
         // });
     });
-    //Search section
+    //Search section ==============================
     app.get('/search', isLoggedIn, function(req, res) {
         res.render('search.ejs', {
             user : req.user
         });
     });
+
     app.post('/searchResult', isLoggedIn, function(req, res) {
-        console.log(req.body.roomSharing)
-        res.render('searchResult.ejs', {
-            user : req.user
+
+        var userSearchCriteria={"roomSharing":req.body.roomSharing,
+            "pet":req.body.pet,
+            "smoke":req.body.smoke,
+            "visitors":req.body.visitors,
+            "drink":req.body.drink,
+            "veg":req.body.veg,
+            "livingPreference":req.body.livingPreference//gender preference
+
+        };
+        console.log('user search criteria is'+userSearchCriteria);
+        getSearchResults.getSearchResults(userSearchCriteria,function(searchResults){
+            console.log('searchresults are'+searchResults);
+            res.render('searchResult.ejs', {user : req.user, searchResults:searchResults });
         });
+
+
+        //res.render('searchResult.ejs', {user : req.user, searchResults:searchResults });
     });
 
     // Handle profile

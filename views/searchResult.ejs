@@ -1,3 +1,12 @@
 <% include ./partials/header %>
 
+
+<body>
+<h1>searchResults</h1>
+<% for(let i = 0; i < searchResults.length; i++) { %>
+<article>
+    <p>Name:<%= searchResults[i].google.name %> <br> Age:<%= searchResults[i].age %></p>
+</article>
+<% } %>
+</body>
 <% include ./partials/footer %>
