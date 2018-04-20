@@ -1,4 +1,5 @@
 require('dotenv').config();
+const knn_rec = require('./../ml/helper');
 
 const SendBird = require('sendbird-nodejs');
 const sb = SendBird(process.env.SendBird_Api_Token);
@@ -263,6 +264,15 @@ module.exports = function(app, passport) {
         user.save(function(err) {
             res.redirect('/profile');
         });
+    });
+
+    app.get('/recommend', isLoggedIn, function(req, res) {
+        var user          = req.user;
+        
+        var result = knn_rec.recommend_user(user, function(res){
+            console.log(res);
+        });
+            // res.redirect('/profile');
     });
 };
 
