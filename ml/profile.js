@@ -118,7 +118,7 @@ module.exports = {
 
   update_clusters: function(payload) 
   {
-    console.log(payload);
+    // console.log(payload);
     for(var i = 0; i<payload.length; i++)
     {
       cluster.findOneAndUpdate(

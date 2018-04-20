@@ -300,56 +300,55 @@ function basic_knn(input_arr, n, callback)
 
 function main()
 {
-	var clusters_store;
+	
+	
+	// kmeans_helper(10, function(clusters){
+	// 	// console.log(clusters);
+	// 	profile.update_clusters(clusters);
+	// });
+
+
 	var start = new Date();
-	kmeans_helper(3, function(clusters){
-		// console.log(clusters);
-		clusters_store = clusters;
-		profile.update_clusters(clusters);
+	knn_helper([ 0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1 ]
+, 6, function(temp)
+	{
+			// console.log(temp);
+			var end = new Date() - start;
+console.info("Execution time of KMeans KNN for 1000 user profile: %dms", end);
 	});
 
-
-	
-// 	knn_helper([ 0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   1000,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1 ]
-// , 6, function(temp)
-// 	{
-// 			// console.log(temp);
-// 			var end = new Date() - start;
-// console.info("Execution time of Kmeans KNN for 10 user profile: %dms", end);
-// 	});
-
-// 	basic_knn([ 0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   1000,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1,
-//   0.1 ]
-// , 6, function(temp)
-// 	{
-// 			// console.log(temp);
-// 			var end = new Date() - start;
-// console.info("Execution time of Basic KNN for 10 user profile: %dms", end);
-// 	});
+	basic_knn([ 0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1,
+  0.1 ]
+, 6, function(temp)
+	{
+			// console.log(temp);
+			var end = new Date() - start;
+console.info("Execution time of Basic KNN for 1000 user profile: %dms", end);
+	});
 
 }
