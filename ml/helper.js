@@ -5,8 +5,6 @@ const knn = require('./knn');
 if(require.main == module)
     main()
 
-
-
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
