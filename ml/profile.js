@@ -115,6 +115,27 @@ module.exports = {
       callback(res);
     });
   },
+
+  update_clusters: function(payload) 
+  {
+    console.log(payload);
+    for(var i = 0; i<payload.length; i++)
+    {
+      cluster.findOneAndUpdate(
+      {
+        cluster_number : payload[i]['cluster_number']
+      },
+      {$set: 
+        {
+          centroid: payload[i]['centroid'],
+         user_list: payload[i]['user_list']
+        }
+      }, function(err, res){
+        if(err) return err;
+        // console.log(res);
+      });
+    }
+  }
 }
 
 
