@@ -110,7 +110,7 @@ function profile_array(callback)
 			user_id_list[i] = res[i]['google']['id'];
   			vectors[i] = [ (res[i]['age'] -18)/82 , res[i]['gender'], res[i]['dietary'], 
   				res[i]['drinking'], res[i]['smoking'], res[i]['room'], 
-  				res[i]['max_budget']-res[i]['min_budget'], res[i]['pet'],res[i]['visitors'],
+  				(res[i]['max_budget']-res[i]['min_budget'])/800, res[i]['pet'],res[i]['visitors'],
   				res[i]['openness'], res[i]['conscientiousness'],
   				res[i]['neuroticism'], res[i]['agreeableness'],
   				res[i]['extraversion']];
@@ -298,19 +298,22 @@ function basic_knn(input_arr, n, callback)
 
 function main()
 {
-	console.log("Hello world");
-	var start = new Date();
-	// kmeans_helper(3, function(clusters){
-	// 	console.log(clusters);
-	// });
 	
+	
+	// kmeans_helper(10, function(clusters){
+	// 	// console.log(clusters);
+	// 	profile.update_clusters(clusters);
+	// });
+
+
+	var start = new Date();
 	knn_helper([ 0.1,
   0.1,
   0.1,
   0.1,
   0.1,
   0.1,
-  1000,
+  1,
   0.1,
   0.1,
   0.1,
@@ -322,7 +325,7 @@ function main()
 	{
 			// console.log(temp);
 			var end = new Date() - start;
-console.info("Execution time of Kmeans KNN for 10 user profile: %dms", end);
+console.info("Execution time of KMeans KNN for 1000 user profile: %dms", end);
 	});
 
 	basic_knn([ 0.1,
@@ -331,7 +334,7 @@ console.info("Execution time of Kmeans KNN for 10 user profile: %dms", end);
   0.1,
   0.1,
   0.1,
-  1000,
+  1,
   0.1,
   0.1,
   0.1,
@@ -343,7 +346,7 @@ console.info("Execution time of Kmeans KNN for 10 user profile: %dms", end);
 	{
 			// console.log(temp);
 			var end = new Date() - start;
-console.info("Execution time of Basic KNN for 10 user profile: %dms", end);
+console.info("Execution time of Basic KNN for 1000 user profile: %dms", end);
 	});
 
 }
