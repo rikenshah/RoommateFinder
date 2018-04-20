@@ -269,10 +269,12 @@ module.exports = function(app, passport) {
     app.get('/recommend', isLoggedIn, function(req, res) {
         var user          = req.user;
         
-        var result = knn_rec.recommend_user(user, function(res){
+        knn_rec.recommend_user(user, function(results){
             console.log(res);
+            res.render('recommend.ejs',{users:results,user:user});
         });
-            // res.redirect('/profile');
+        
+
     });
 };
 
