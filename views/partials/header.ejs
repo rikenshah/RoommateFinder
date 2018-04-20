@@ -15,13 +15,23 @@
     <!-- Bootstrap Date-Picker Plugin -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-
+    <style>
+      #mynav{
+        color:white;
+        background-color:black; 
+        border-radius: 0;
+      }
+      body{
+        background-image: url("views/img/01.jpg");
+        background-repeat: repeat;
+      }
+    </style>
 </head>
 <body>
-     <nav class="navbar navbar-dark bg-success">
+     <nav class="navbar navbar-dark" id="mynav">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Roommates Finder</a>
+          <a class="navbar-brand" href="/dashboard">Roommates Finder</a>
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="/dashboard">Home</a></li>

@@ -137,12 +137,6 @@ module.exports = {
     }
   }
 }
-
-
-
-
-
-
 // function fetch_profile(vectors, callback)
 // {
 // 	console.log("In here");
