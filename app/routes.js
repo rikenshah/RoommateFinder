@@ -1,4 +1,5 @@
 require('dotenv').config();
+const knn_rec = require('./../ml/helper');
 
 const SendBird = require('sendbird-nodejs');
 const sb = SendBird(process.env.SendBird_Api_Token);
@@ -75,13 +76,16 @@ module.exports = function(app, passport) {
             "visitors":req.body.visitors,
             "drink":req.body.drink,
             "veg":req.body.veg,
-            "livingPreference":req.body.livingPreference//gender preference
-
+            "livingPreference":req.body.livingPreference,//gender preference
+            "minAge":req.body.minAge,
+            "maxAge":req.body.maxAge,
+            "minBudget":req.body.minBudget,
+            "maxBudget":req.body.maxBudget
         };
         console.log('user search criteria is'+userSearchCriteria);
         getSearchResults.getSearchResults(userSearchCriteria,function(searchResults){
             console.log('searchresults are'+searchResults);
-            res.render('searchResult.ejs', {user : req.user, searchResults:searchResults });
+            res.render('searchResult.ejs', {user : req.user, searchResults:searchResults, app_Id : process.env.SendBird_App_Id});
         });
 
 
@@ -263,6 +267,18 @@ module.exports = function(app, passport) {
         user.save(function(err) {
             res.redirect('/profile');
         });
+    });
+
+    // Reccomendation -------------------------
+    app.get('/recommend', isLoggedIn, function(req, res) {
+        var user          = req.user;
+
+        knn_rec.recommend_user(user, function(results){
+            console.log(res);
+            res.render('recommend.ejs',{users:results,user:user, app_Id : process.env.SendBird_App_Id});
+        });
+
+
     });
 };
 

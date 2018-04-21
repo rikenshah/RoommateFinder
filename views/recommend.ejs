@@ -1,0 +1,28 @@
+<% include ./partials/header %>
+
+
+<body>
+
+<div class="container container-fluid">
+	<h1>Search again!
+	<a href="/search" class="btn btn-warning btn-lg">Search Roommates</a></h1>
+	<br><br>
+	<h2>Here are the Search results</h2><br>
+	<% for(let i = 0; i < Math.min(6,users.length); i++) { %>
+	<div class="col-md-4">
+		<div class="panel panel-primary userpanel">
+			<div class="panel-heading"><%= users[i].google.name %></div>
+		    <div class="panel-body">Age:<%= users[i].age %> Gender:<% if(users[i].gender==0) {%> Female <%}else{ %> Male <% } %>
+		    </div>
+		</div>
+	</div>
+	<% } %>
+</div>
+<style>
+	.userpanel{
+		margin:2em;
+	}
+</style>
+</body>
+<% include ./partials/chat %>
+<% include ./partials/footer %>

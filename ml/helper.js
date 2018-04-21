@@ -255,8 +255,9 @@ function knn_helper(input_arr, n, callback)
 				// 	console.log("Check 3");
 					// console.log(final_list);
 				// });
+				console.log(help, n);
 				var knn_user_ids = new Array();
-				for(var j =0; j< final_list.length; j++)
+				for(var j =0; j< n; j++)
 				{
 					knn_user_ids.push(final_list[j][0]);
 				}
@@ -300,7 +301,7 @@ function main()
 {
 	
 	
-	// kmeans_helper(10, function(clusters){
+	// kmeans_helper(5, function(clusters){
 	// 	// console.log(clusters);
 	// 	profile.update_clusters(clusters);
 	// });
@@ -323,12 +324,56 @@ function main()
   0.1 ]
 , 6, function(temp)
 	{
-			// console.log(temp);
+			console.log(temp);
+			var return_arr = new Array();
+			profile.fetch_users(function(res){
+				for(var i = 0; i<res.length; i++)
+				{
+					for(var j = 0; j< temp.length; j++)
+					{
+						if(res[i]['google']['id'] == temp[j])
+						{
+							console.log("Yes");
+						}
+						if(res[i]['google']['id'] == temp[j])
+						{
+							return_arr.push(res[i]);
+						}
+					}
+				}
+				console.log(return_arr);
+			});
 			var end = new Date() - start;
 console.info("Execution time of KMeans KNN for 1000 user profile: %dms", end);
 	});
 
-	basic_knn([ 0.1,
+// 	basic_knn([ 0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1,
+//   0.1 ]
+// , 6, function(temp)
+// 	{
+// 			// console.log(temp);
+// 			var end = new Date() - start;
+// console.info("Execution time of Basic KNN for 1000 user profile: %dms", end);
+// 	});
+
+}
+
+function recommend_user(user, callback)
+{
+	console.log(user);
+	knn_helper([ 0.1,
   0.1,
   0.1,
   0.1,
@@ -345,8 +390,30 @@ console.info("Execution time of KMeans KNN for 1000 user profile: %dms", end);
 , 6, function(temp)
 	{
 			// console.log(temp);
-			var end = new Date() - start;
-console.info("Execution time of Basic KNN for 1000 user profile: %dms", end);
+			var return_arr = new Array();
+			profile.fetch_users(function(res){
+				for(var i = 0; i<res.length; i++)
+				{
+					for(var j = 0; j< temp.length; j++)
+					{
+						// if(res[i]['google']['id'] == temp[j])
+						// {
+						// 	console.log("Yes");
+						// }
+						if(res[i]['google']['id'] == temp[j])
+						{
+							return_arr.push(res[i]);
+						}
+					}
+				}
+				// console.log(return_arr);
+				callback(return_arr);
+			});
+			
 	});
-
 }
+
+module.exports = 
+{
+	recommend_user
+};

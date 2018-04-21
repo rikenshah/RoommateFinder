@@ -11,6 +11,10 @@ function getSearchResults(userSearchCriteria,callback){
    var drink=userSearchCriteria.drink-1;
    var veg=userSearchCriteria.veg-1;
    var livingPreference=userSearchCriteria.livingPreference-1;//gender
+   var minAge=userSearchCriteria.minAge;
+   var maxAge=userSearchCriteria.maxAge;
+   var minBudget=userSearchCriteria.minBudget;
+   var maxBudget=userSearchCriteria.maxBudget;
 
    if(roomSharing==2)
        roomSharing=null;
@@ -53,16 +57,26 @@ function getSearchResults(userSearchCriteria,callback){
    else if(livingPreference==1)
        livingPreference=0;
    else livingPreference=1;
+
+   if(minAge==null ||maxAge==null)
+   {
+       minAge=null;
+       maxAge=null;
+   }
+
     //{"room":{"$ne":null}{ $and : [ {'first_name' : { $ne:null }, {'first_name' :'value_A' }]}
+    //MyModel.paginate({}, 2, 10,
     user.find( { $or:[ {$and: [{'room':{"$ne":null}}, {'room':roomSharing}]},
                 {$and :[{'gender':{"$ne":null}},{'gender':livingPreference}]},
                 {$and:[{'smoking':{"$ne":null}},{'smoking':smoke}]},
                 {$and:[{'dietary':{"$ne":null}},{'dietary':veg}]},
                 {$and:[{'drinking':{"$ne":null}},{'drinking':drink}]},
                 {$and:[{'pet':{"$ne":null}},{'pet':pet}]},
-                {$and:[{'visitors':{"$ne":null}},{'visitors':visitors}]}
-
-                 ]},
+                {$and:[{'visitors':{"$ne":null}},{'visitors':visitors}]},
+                {$and:[{'age':{"$ne":null}},{'age':{"$gt":minAge}},{'age':{"$lt":maxAge}}]},
+                {$and:[{'min_budget':{"$ne":null}},{'min_budget':{"$gt":minBudget}}]},
+                {$and:[{'max_budget':{"$ne":null}},{'max_budget':{"$lt":maxBudget}}]}
+            ]},
         function(err,users){
 
             if(!err)
