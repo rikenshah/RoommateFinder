@@ -274,7 +274,7 @@ module.exports = function(app, passport) {
         var user          = req.user;
 
         knn_rec.recommend_user(user, function(results){
-            console.log(res);
+            // console.log(res);
             res.render('recommend.ejs',{users:results,user:user, app_Id : process.env.SendBird_App_Id});
         });
 

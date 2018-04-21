@@ -372,23 +372,43 @@ console.info("Execution time of KMeans KNN for 1000 user profile: %dms", end);
 
 function recommend_user(user, callback)
 {
-	console.log(user);
-	knn_helper([ 0.1,
-  0.1,
-  0.1,
-  0.1,
-  0.1,
-  0.1,
-  1,
-  0.1,
-  0.1,
-  0.1,
-  0.1,
-  0.1,
-  0.1,
-  0.1 ]
-, 6, function(temp)
+	console.log(user['google']['id']);
+	profile.fetch_users(function(res)
 	{
+
+		var input_arr = [ 0.5,  0.5,  0.5,  0.5,  0.5,  0.5,   0.5,  0.5,  0.5,  0.5,  0.5,  0.5,  0.5,  0.5 ];
+		for(var i = 0; i < res.length;i++)
+		{
+			if(res[i]['google']['id'] == user['google']['id'])
+			{
+				// console.log("Yes", input_arr); 
+  		// 		, ,res[i]['visitors'],
+  		// 		res[i]['openness'], res[i]['conscientiousness'],
+  		// 		res[i]['neuroticism'], res[i]['agreeableness'],
+  		// 		res[i]['extraversion']];
+				if(res[i]['age']!= null)
+				{
+					input_arr[0] = (res[i]['age']-18)/82;
+					input_arr[1] = res[i]['gender'];
+					input_arr[2] = res[i]['dietary'];
+					input_arr[3] = res[i]['drinking'];
+					input_arr[4] = res[i]['smoking'];
+					input_arr[5] = res[i]['room'];
+					input_arr[6] = (res[i]['max_budget']-res[i]['min_budget'])/800;
+					input_arr[7] = res[i]['pet'];
+					input_arr[8] = res[i]['visitors'];
+					input_arr[9] = res[i]['openness'];
+					input_arr[10] = res[i]['conscientiousness'];
+					input_arr[11] = res[i]['neuroticism'];
+					input_arr[12] = res[i]['agreeableness'];
+					input_arr[13] = res[i]['extraversion'];
+				}
+
+			}
+		}
+		console.log(input_arr);
+		knn_helper(input_arr, 6, function(temp)
+		{
 			// console.log(temp);
 			var return_arr = new Array();
 			profile.fetch_users(function(res){
@@ -410,7 +430,9 @@ function recommend_user(user, callback)
 				callback(return_arr);
 			});
 			
+		});
 	});
+	
 }
 
 module.exports = 
