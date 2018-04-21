@@ -76,8 +76,11 @@ module.exports = function(app, passport) {
             "visitors":req.body.visitors,
             "drink":req.body.drink,
             "veg":req.body.veg,
-            "livingPreference":req.body.livingPreference//gender preference
-
+            "livingPreference":req.body.livingPreference,//gender preference
+            "minAge":req.body.minAge,
+            "maxAge":req.body.maxAge,
+            "minBudget":req.body.minBudget,
+            "maxBudget":req.body.maxBudget
         };
         console.log('user search criteria is'+userSearchCriteria);
         getSearchResults.getSearchResults(userSearchCriteria,function(searchResults){

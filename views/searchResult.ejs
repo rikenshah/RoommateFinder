@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 
 
-<body>
+<div>
 
 <div class="container container-fluid">
 	<h1>Search again!
@@ -12,8 +12,25 @@
 	<div class="col-md-4">
 		<div class="panel panel-primary userpanel">
 			<div class="panel-heading"><%= searchResults[i].google.name %></div>
-		    <div class="panel-body">Age:<%= searchResults[i].age %> Gender:<% if(searchResults[i].gender==0) {%> Male <%}else{ %> Female <% } %>
-		    </div>
+			<br>Age:<%= searchResults[i].age %> Gender:<% if(searchResults[i].gender==0) {%> Male <%}else{ %> Female <% } %>
+			<br>Diet:<% if(searchResults[i].dietary==0) {%> Veg <%}else{ %> Non-veg <% }%>
+			<br>Smoke:<% if(searchResults[i].smoking==0) {%> Non-Smoker <%}else{ %> Smoker <% }%>
+			<br>Drinker:<% if(searchResults[i].drinking==0) {%> Yes <%}else{ %> No <% }%>
+			<br>Willing to Share room?:<% if(searchResults[i].room==0) {%> Yes <%}else{ %> No <% }%>
+			<br>Pet-friendly:<% if(searchResults[i].pet==0) {%> No <%}else{ %> Yes <% }%>
+			<br>Visitor-friendly:<% if(searchResults[i].visitors==0) {%> No <%}else{ %> Yes <% }%>
+			<br>Min-Budget:<%= searchResults[i].min_budget %> Max-Budget:<%= searchResults[i].max_budget %>
+			<br>About me:<%= searchResults[i].summary%>	</div>
+			<!--
+			<div class="panel-body">Age:<%= searchResults[i].age %> Gender:<% if(searchResults[i].gender==0) {%> Male <%}else{ %> Female <% } %></div>
+			<div class="panel-body">Diet:<% if(searchResults[i].dietary==0) {%> Veg <%}else{ %> Non-veg <% }%></div>
+			<div class="panel-body">Smoke:<% if(searchResults[i].smoking==0) {%> Non-Smoker <%}else{ %> Smoker <% }%></div>
+			<div class="panel-body">Willing to Share room?:<% if(searchResults[i].room==0) {%> No <%}else{ %> Yes <% }%></div>
+			<div class="panel-body">Pet-friendly:<% if(searchResults[i].pet==0) {%> No <%}else{ %> Yes <% }%></div>
+			<div class="panel-body">Visitor-friendly:<% if(searchResults[i].visitors==0) {%> No <%}else{ %> Yes <% }%></div>
+			<div class="panel-body">Min-Budget:<%= searchResults[i].min_budget %> Max-Budget:<%= searchResults[i].max_budget %> </div>
+			<div class="panel-body">About me:<%= searchResults[i].summary%></div>-->
+			</div>
 		</div>
 	</div>
 	<% } %>

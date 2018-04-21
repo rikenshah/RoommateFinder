@@ -58,13 +58,6 @@ userSchema.index({ "visitors": 1 });
 userSchema.index({"Summary":"text"});
 
 
-//var User = mongoose.model('User', userSchema );
-
-function findOne(name){
-    var usern=User.findOne({name:'Himani Himani'})
-    console.log(usern);
-}
-
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);
 
