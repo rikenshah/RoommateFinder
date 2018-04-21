@@ -82,7 +82,7 @@ module.exports = function(app, passport) {
         console.log('user search criteria is'+userSearchCriteria);
         getSearchResults.getSearchResults(userSearchCriteria,function(searchResults){
             console.log('searchresults are'+searchResults);
-            res.render('searchResult.ejs', {user : req.user, searchResults:searchResults });
+            res.render('searchResult.ejs', {user : req.user, searchResults:searchResults, app_Id : process.env.SendBird_App_Id});
         });
 
 
@@ -266,14 +266,15 @@ module.exports = function(app, passport) {
         });
     });
 
+    // Reccomendation -------------------------
     app.get('/recommend', isLoggedIn, function(req, res) {
         var user          = req.user;
-        
+
         knn_rec.recommend_user(user, function(results){
             console.log(res);
-            res.render('recommend.ejs',{users:results,user:user});
+            res.render('recommend.ejs',{users:results,user:user, app_Id : process.env.SendBird_App_Id});
         });
-        
+
 
     });
 };

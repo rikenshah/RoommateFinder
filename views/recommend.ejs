@@ -12,7 +12,7 @@
 	<div class="col-md-4">
 		<div class="panel panel-primary userpanel">
 			<div class="panel-heading"><%= users[i].google.name %></div>
-		    <div class="panel-body">Age:<%= users[i].age %> Gender:<% if(users[i].gender==0) {%> Female <%}else{ %> Male <% } %> 
+		    <div class="panel-body">Age:<%= users[i].age %> Gender:<% if(users[i].gender==0) {%> Female <%}else{ %> Male <% } %>
 		    </div>
 		</div>
 	</div>
@@ -24,4 +24,5 @@
 	}
 </style>
 </body>
+<% include ./partials/chat %>
 <% include ./partials/footer %>
