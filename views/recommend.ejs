@@ -4,17 +4,14 @@
 <div>
 
 <div class="container container-fluid">
-	<h1>Search again!
-	<a href="/search" class="btn btn-warning btn-lg">Search Roommates</a></h1>
+	<h1>Recommended Roommates!
 	<br><br>
-	<h2>Here are the Search results</h2><br>
+	<h2>Here are the Recommended results</h2><br>
 	<% for(let i = 0; i < Math.min(6,users.length); i++) { %>
 	<div class="col-md-4">
 		<div class="panel panel-primary userpanel">
 			<div class="panel-heading"><%= users[i].google.name %></div>
 		    <div class="panel-body">Age:<%= users[i].age %><br> Gender:<% if(users[i].gender==0) {%> Male <%}else{ %> Female <% } %>
-
-		    <br>		
 		    		
 			<br>Diet:<% if(users[i].dietary==0) {%> Veg <%}else{ %> Non-veg <% }%>		
 			<br>Smoke:<% if(users[i].smoking==0) {%> Non-Smoker <%}else{ %> Smoker <% }%>		
@@ -22,8 +19,7 @@
 			<br>Willing to Share room?:<% if(users[i].room==0) {%> Yes <%}else{ %> No <% }%>		
 			<br>Pet-friendly:<% if(users[i].pet==0) {%> No <%}else{ %> Yes <% }%>		
 			<br>Visitor-friendly:<% if(users[i].visitors==0) {%> No <%}else{ %> Yes <% }%>		
-			<br>Min-Budget:<%= users[i].min_budget %> Max-Budget:<%= users[i].max_budget %>		
-			<br>About me:<%= users[i].Summary%>
+
 
 		    </div>
 		</div>
