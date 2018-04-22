@@ -407,20 +407,33 @@ function recommend_user(user, callback)
 			}
 		}
 		console.log(input_arr);
-		knn_helper(input_arr, 6, function(temp)
+		knn_helper(input_arr, 7, function(temp)
 		{
-			// console.log(temp);
+			console.log(temp);
+			var temp_temp = new Array();
+			for(var z = 0; z<6;z++)
+			{
+				if(temp[z] != user['google']['id'])
+				{
+					temp_temp.push(temp[z]);
+				}
+				else
+				{
+					z--;
+				}
+			}
+			console.log(temp_temp)
 			var return_arr = new Array();
 			profile.fetch_users(function(res){
 				for(var i = 0; i<res.length; i++)
 				{
-					for(var j = 0; j< temp.length; j++)
+					for(var j = 0; j< temp_temp.length; j++)
 					{
 						// if(res[i]['google']['id'] == temp[j])
 						// {
 						// 	console.log("Yes");
 						// }
-						if(res[i]['google']['id'] == temp[j])
+						if(res[i]['google']['id'] == temp_temp[j])
 						{
 							return_arr.push(res[i]);
 						}
