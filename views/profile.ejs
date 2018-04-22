@@ -202,13 +202,13 @@
               <div class="col-md-4">
                 <%if (profile == false) { %>
                   <label class="radio-inline" for="visitors-0">
-                    <input type="radio" name="visitors" id="visitors-0" value="0" checked="checked">Yes</label>
+                    <input type="radio" name="visitors" id="visitors-0" value="0">Yes</label>
                   <label class="radio-inline" for="visitors-1">
                     <input type="radio" name="visitors" id="visitors-1" value="1">No</label>
                 <% } else { %>
                     <% if (user.visitors == 0){ %>
                       <label class="radio-inline" for="visitors-0">
-                        <input type="radio" name="visitors" id="visitors-0" value="0">Yes</label>
+                        <input type="radio" name="visitors" id="visitors-0" value="0" checked="checked">Yes</label>
                       <label class="radio-inline" for="visitors-1">
                         <input type="radio" name="visitors" id="visitors-1" value="1">No</label>
                     <% } else {%>
