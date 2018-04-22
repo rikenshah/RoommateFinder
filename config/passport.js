@@ -372,7 +372,7 @@ module.exports = function(passport) {
             });
         }else{
             // fail
-            done(new Error("Invalid host domain"));
+            return done(null);
         }
     }));
 
