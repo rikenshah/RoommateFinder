@@ -409,22 +409,9 @@ function recommend_user(user, callback)
 		console.log(input_arr);
 		knn_helper(input_arr, 7, function(temp)
 		{
-			console.log(temp);
-			var temp_temp = new Array();
-			for(var z = 0; z<6;z++)
-			{
-				if(temp[z] != user['google']['id'])
-				{
-					temp_temp.push(temp[z]);
-				}
-				else
-				{
-					z--;
-				}
-			}
-			console.log(temp_temp)
+			// console.log(temp.length);
 			var return_arr = new Array();
-			profile.fetch_users(function(res){
+
 				for(var i = 0; i<res.length; i++)
 				{
 					for(var j = 0; j< temp_temp.length; j++)
@@ -435,13 +422,19 @@ function recommend_user(user, callback)
 						// }
 						if(res[i]['google']['id'] == temp_temp[j])
 						{
-							return_arr.push(res[i]);
+							if(res[i]['google']['id'] != user['google']['id'])
+
+							{return_arr.push(res[i]);}
 						}
 					}
 				}
 				// console.log(return_arr);
+				if(return_arr.length > 6)
+				{
+					return_arr.splice(-1,1);
+				}
+				// console.log(return_arr.length);
 				callback(return_arr);
-			});
 			
 		});
 	});

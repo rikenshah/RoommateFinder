@@ -373,7 +373,6 @@ module.exports = function(passport) {
         }else{
             // fail
             return done(null);
-            //done(new Error("Invalid host domain"));
         }
     }));
 
