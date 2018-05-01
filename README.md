@@ -30,7 +30,6 @@ The application can be accessed from [here](https://findmeroommate.herokuapp.com
 7. Start the application by typing `npm start`. This will start the server at `localhost:8080`.
 
 ### Use Cases
-
 #### Recommendations
 
 #### Chat
@@ -42,6 +41,8 @@ The application has an inbuilt chat where the users can chat with one another an
 The magicsauce API takes in a text (which corresponds to the summary section of user profile) and gives various personality parameters like agreeableness, neuroticism, openness, etc. This values enables us to go beyond the user input while providing them appropriate recommendations.
 
 #### Search
+User can  search  across parameters   like   drinking   habits,   smoking   habits,   petfriendly,  visitor  friendly  etc.   We  also  made  it  optional  to skip  few  fields  and  fill  some.   As per your filtering criteria, the search queries will be dynamically created and results will be fetched.
+
 
 ### Team Information
 
