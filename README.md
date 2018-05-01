@@ -38,6 +38,9 @@ The application can be accessed from [here](https://findmeroommate.herokuapp.com
 The application has an inbuilt chat where the users can chat with one another and can also do a group chat. The chat will help in easy communication between the roommates and the group chat will help if more than two roommates want to chat with one another.
 
 #### Personality API
+
+The magicsauce API takes in a text (which corresponds to the summary section of user profile) and gives various personality parameters like agreeableness, neuroticism, openness, etc. This values enables us to go beyond the user input while providing them appropriate recommendations.
+
 #### Search
 
 ### Team Information
