@@ -6,6 +6,10 @@ SEng 18 Project 2
 
 In this work, we have surveyed and examined the problems of communication gap and trust issues faced by current graduate students despite having social media groups to bond with each other for finding potential roommates. We look into the existing solutions developed and analyze the code as well as results in great details and propose an improved solution to solve this problem. We also demonstrate the inefficiencies of existing solutions and how we can modify those to improve the overall results. At the same time, we also propose radically different attributes and features that will help in making the application more dynamic, scalable, feature-rich and user-friendly.  
 
+### Access the Application
+
+The application can be accessed from [here](https://findmeroommate.herokuapp.com/).
+
 ### Steps to Install and Run (Developer Guide)
 
 1. Make sure `Node.JS` is installed and is working in your machine. (Check using `node -v`).
@@ -27,10 +31,14 @@ In this work, we have surveyed and examined the problems of communication gap an
 
 ### Use Cases
 
-1. Recommendations
-2. Chat
-3. Personality API
-4. Search
+#### Recommendations
+
+#### Chat
+
+The application has an inbuilt chat where the users can chat with one another and can also do a group chat. The chat will help in easy communication between the roommates and the group chat will help if more than two roommates want to chat with one another.
+
+#### Personality API
+#### Search
 
 ### Team Information
 
