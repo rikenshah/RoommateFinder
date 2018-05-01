@@ -30,7 +30,10 @@ The application can be accessed from [here](https://findmeroommate.herokuapp.com
 7. Start the application by typing `npm start`. This will start the server at `localhost:8080`.
 
 ### Use Cases
+
 #### Recommendations
+
+To give recommendations of the potential roommates to a user who is searching for one, we have used combination of K-means-clustering and k-nearest-neighbours algorithm. The goal of the combination algorithm was to reduce latency by increasing the performance of the system when the number of users in the system increases. The computational overhead can be significantly reduced by using such combination algorithm.
 
 #### Chat
 
