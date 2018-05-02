@@ -56,7 +56,7 @@ userSchema.index({ "room": 1});//room sharing
 userSchema.index({ "pet": 1});//pet friendly
 userSchema.index({ "visitors": 1 });
 userSchema.index({"Summary":"text"});
-
+userSchema.index({name: 'text', 'Summary': 'text'});
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', userSchema);

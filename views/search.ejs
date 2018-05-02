@@ -5,6 +5,13 @@
         <h2>Search a Roommate!</h2>
         <form id="searchForm" method="POST" action="/searchResult">
             <div class="form-group">
+                <label for="veg"> Veg/Non-veg: Are you a meat lover?(Mandatory)</label>
+                <select class="form-control" id='veg' value='2' name='veg'>
+                    <option value='1'selected='selected' >Yes </option>
+                    <option value='2' >No</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="roomSharing"> Roommate Sharing: Do you want to share? </label>
                 <select class="form-control" id='roomSharing' value='2' name='roomSharing'>
                     <option value='1' >Yes</option>
@@ -21,14 +28,6 @@
                     </select>
             </div>
             <div class="form-group">
-                <label for="veg"> Veg/Non-veg: Are you a meat lover?</label>
-                    <select class="form-control" id='veg' value='2' name='veg'>
-                        <option value='1' >Yes</option>
-                        <option value='2' >No</option>
-                        <option value='3' selected='selected'>Does not matter</option>
-                    </select>
-            </div>
-            <div class="form-group">
                 <label for="smoke"> Smoke: Okay with a smoker?</label>
                     <select class="form-control" id='smoke' value='2' name='smoke'>
                         <option value='1' selected='selected'>Yes</option>
@@ -37,7 +36,7 @@
                     </select>
             </div>
             <div class="form-group">
-                <label for="livingPreference"> Male/Female/Doesn't matter</label>
+                <label for="livingPreference"> Living Preference-Male/Female</label>
                     <select class="form-control" id='livingPreference' value='2' name='livingPreference'>
                         <option value='1' >Male</option>
                         <option value='2' >Female</option>
@@ -62,14 +61,18 @@
                         </select>
             </div>
             <div class="form-group">
-                <label for="age"> Age: Any age preferences?</label><br>
-                    Minimum Age: <input type="text" class="form-group" name="minAge"></input><br>
+                <label for="age"> Age: Any age preferences?(Enter both or none)</label><br>
+                    Minimum Age: <input type="text" class="form-group" name="minAge"></input>
                     Maximum Age: <input type="text" class="form-group" name="maxAge"></input>
             </div>
             <div class="form-group">
-                <label for="budget"> Budget:Any Budget constraints?</label><br>
-                    Minimum Budget: <input type="text" name="minBudget"></input><br>
-                    Maximum Budget: <input type="text" name="maxBudget"></input>
+                <label for="budget"> Budget:Any Budget constraints?(Enter both or none)</label><br>
+                    Minimum : <input type="text" name="minBudget"></input>
+                    Maximum : <input type="text" name="maxBudget"></input>
+            </div>
+            <div class="form-group">
+                <label for="summary"> Search User Summary</label>
+                <input type="text" name="summary"></input><br>
             </div>
            <!-- <div class="form-group">
                 <label for="age"> Earliest Move in date</label>

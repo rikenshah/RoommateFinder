@@ -8,7 +8,7 @@
 	<a href="/search" class="btn btn-warning btn-lg">Search Roommates</a></h1>
 	<br><br>
 	<h2>Here are the Search results</h2><br>
-	<% for(let i = 0; i < Math.min(6,searchResults.length); i++) { %>
+	<% for(let i = 0; i < searchResults.length; i++) { %>
 	<div class="col-md-4">
 		<div class="panel panel-primary userpanel">
 			<div class="panel-heading"><%= searchResults[i].google.name %></div>
@@ -22,9 +22,11 @@
 				<br>Visitor-friendly:<% if(searchResults[i].visitors==0) {%> No <%}else{ %> Yes <% }%>
 				
 		    </div>
+
 		</div>
 	</div>
 	<% } %>
+</div>
 </div>
 <style>
 	.userpanel{

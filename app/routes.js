@@ -80,11 +80,12 @@ module.exports = function(app, passport) {
             "minAge":req.body.minAge,
             "maxAge":req.body.maxAge,
             "minBudget":req.body.minBudget,
-            "maxBudget":req.body.maxBudget
+            "maxBudget":req.body.maxBudget,
+            "summary":req.body.summary
         };
-        console.log('user search criteria is'+userSearchCriteria);
+       // console.log('user search criteria is'+userSearchCriteria);
         getSearchResults.getSearchResults(userSearchCriteria,function(searchResults){
-            console.log('searchresults are'+searchResults);
+            //console.log('searchresults are'+searchResults);
             res.render('searchResult.ejs', {user : req.user, searchResults:searchResults, app_Id : process.env.SendBird_App_Id});
         });
 
