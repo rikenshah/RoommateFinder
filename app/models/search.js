@@ -63,9 +63,6 @@ function getSearchResults(userSearchCriteria,callback){
        drink=null;
    else
        query.drinking=drink;
-   //else if(drink==1)
-     //  drink=0;
-   //else drink=1;
 
    if(livingPreference==2)
        livingPreference=null;
@@ -90,7 +87,7 @@ function getSearchResults(userSearchCriteria,callback){
     /*if(pet!=null) query.pet=pet;
     if(visitors!=null) query.visitors=visitors;
     if(summary!=null) query.Summary=summary;
-*/
+
 
     console.log('searched query dietary '+veg);
     console.log('searched query gender '+livingPreference);
@@ -102,7 +99,7 @@ function getSearchResults(userSearchCriteria,callback){
     console.log('my query gender '+query.gender);
     console.log('my query drinking '+query.drinking);
     console.log('my query smoke '+query.smoking);
-    console.log('my query room '+query.room);
+    console.log('my query room '+query.room);*/
 
     //{"room":{"$ne":null}{ $and : [ {'first_name' : { $ne:null }, {'first_name' :'value_A' }]}
     //MyModel.paginate({}, 2, 10,
@@ -136,16 +133,6 @@ function getSearchResults(userSearchCriteria,callback){
 
 }
 
-/*userSchema.index({ "age": 1});//see if age need to be within a range?
-userSchema.index({ "gender": 1});//living preference
-userSchema.index({ "dietary": 1 });
-userSchema.index({ "drinking": 1});
-userSchema.index({ "smoking": 1});
-userSchema.index({ "room": 1});//room sharing
-userSchema.index({ "pet": 1});//pet friendly
-userSchema.index({ "visitors": 1 });
-userSchema.index({"Summary":"text"});
-*/
 module.exports =
     {
         getSearchResults
