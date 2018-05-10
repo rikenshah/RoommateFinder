@@ -414,13 +414,13 @@ function recommend_user(user, callback)
 
 				for(var i = 0; i<res.length; i++)
 				{
-					for(var j = 0; j< temp_temp.length; j++)
+					for(var j = 0; j< temp.length; j++)
 					{
 						// if(res[i]['google']['id'] == temp[j])
 						// {
 						// 	console.log("Yes");
 						// }
-						if(res[i]['google']['id'] == temp_temp[j])
+						if(res[i]['google']['id'] == temp[j])
 						{
 							if(res[i]['google']['id'] != user['google']['id'])
 
