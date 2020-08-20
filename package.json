@@ -19,7 +19,7 @@
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
-    "bcrypt": "^2.0.0",
+    "bcrypt": "^5.0.0",
     "bcrypt-nodejs": "latest",
     "body-parser": "~1.15.2",
     "connect-flash": "~0.1.1",
