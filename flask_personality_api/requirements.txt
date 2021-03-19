@@ -21,7 +21,7 @@ html2text==2018.1.9
 html5lib==1.0.1
 idna==2.6
 itsdangerous==0.24
-Jinja2==2.10
+Jinja2==2.11.3
 json-tricks==3.11.3
 lxml==4.1.1
 Markdown==2.6.11
