@@ -39,6 +39,6 @@
     "passport-twitter": "~1.0.4",
     "sendbird": "^3.0.57",
     "sendbird-nodejs": "^1.0.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.12.1"
   }
 }
