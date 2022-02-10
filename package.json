@@ -12,7 +12,7 @@
     "eslint": "^3.18.0",
     "eslint-loader": "^1.6.3",
     "express": "^4.16.2",
-    "node-sass": "4.5.0",
+    "node-sass": "7.0.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.14.1",
     "webpack": "^2.2.1",
